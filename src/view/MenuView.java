@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +67,14 @@ public class MenuView extends JPanel{
 		this.start.setContentAreaFilled(false);
 		this.start.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(this.start);
+		this.start.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				newPlay();
+				
+			}
+		});
 		
 		this.exit = new JButton("EXIT");
 		this.exit.setBounds(500,750,200,50);
@@ -80,6 +90,17 @@ public class MenuView extends JPanel{
 		this.exit.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(this.exit);
 		
+		this.exit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+				
+			}
+		});
+		
 	}
-	
+	void newPlay() {
+		this.view.switchPanel(new GameView(view));
+	}
 }

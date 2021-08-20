@@ -62,8 +62,11 @@ public class ViewImpl extends JFrame implements View {
 	@Override
 	public void switchPanel(JPanel windows) {
 		// TODO Auto-generated method stub
+	
+		this.getContentPane().removeAll();
 		this.setLayout(new BorderLayout());
 		this.add(windows,BorderLayout.CENTER);
+		this.setVisible(true);
 		
 		
 		
