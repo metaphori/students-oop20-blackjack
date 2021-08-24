@@ -1,7 +1,7 @@
 package model;
 
 public enum Suit {
-	spades(0),clubs(1),diamons(2),heart(3);
+	spades(0),clubs(1),diamods(2),heart(3);
 
 	private int value;
 	
@@ -21,7 +21,7 @@ public enum Suit {
 		case 1:
 			return clubs;
 		case 2:
-			return diamons;
+			return diamods;
 		case 3:
 			return heart;
 		default:

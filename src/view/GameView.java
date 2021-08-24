@@ -81,13 +81,13 @@ public class GameView extends JPanel {
 			playerCardLabel[i] = new JLabel();
 			playerCardLabel[i].setVisible(true);
 			Card card = new Card(Suit.spades,Values.one);
-			if(!this.image.GetSpades().isEmpty()) {
+			if(!this.image.getSpades().isEmpty()) {
 				//System.out.print("c'è");
 				//ImageIcon image1 = new ImageIcon();
 				//image1 = this.image.GetSpades().get(card);
-				for (Card key : this.image.GetSpades().keySet()) {
-			        ImageIcon value =  this.image.GetSpades().get(key);
-			        playerCardLabel[1].setIcon(value);
+				for (Card key : this.image.getSpades().keySet()) {
+			        ImageIcon value =  this.image.getSpades().get(key);
+			        playerCardLabel[i].setIcon(value);
 			    }
 			}
 			//playerCardLabel[i].setIcon(this.image.GetSpades().entr

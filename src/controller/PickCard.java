@@ -30,7 +30,7 @@ public class PickCard {
 			this.cardpicked = new Card(Suit.clubs, Values.getValue(pickedCardValue));
 			break;
 		case 3://diamons
-			this.cardpicked = new Card(Suit.diamons, Values.getValue(pickedCardValue));
+			this.cardpicked = new Card(Suit.diamods, Values.getValue(pickedCardValue));
 			break;
 		case 4://heart
 			this.cardpicked = new Card(Suit.heart, Values.getValue(pickedCardValue));
