@@ -85,10 +85,11 @@ public class GameView extends JPanel {
 				//System.out.print("c'è");
 				//ImageIcon image1 = new ImageIcon();
 				//image1 = this.image.GetSpades().get(card);
-				for (Card key : this.image.getSpades().keySet()) {
-			        ImageIcon value =  this.image.getSpades().get(key);
-			        playerCardLabel[i].setIcon(value);
-			    }
+				//for (Card key : this.image.getSpades().keySet()) {
+			      // ImageIcon value =  this.image.getSpades().get(key);
+			        //playerCardLabel[i].setIcon(value);
+			    //}
+				playerCardLabel[i].setIcon(this.setImage());
 			}
 			//playerCardLabel[i].setIcon(this.image.GetSpades().entr
 			//playerCardLabel[i].setIcon(this.image.getFront().get(0));
@@ -144,6 +145,14 @@ public class GameView extends JPanel {
 			button[i].setVisible(true);
 			buttonPanel.add(button[i]);
 		}		
+	}
+	public ImageIcon setImage() {
+		ImageIcon value = null;
+		for (Card key : this.image.getDiamonds().keySet()) {
+	        value =  this.image.getDiamonds().get(key);
+	        return value;
+	    }
+		return value;
 	}
 
 }
