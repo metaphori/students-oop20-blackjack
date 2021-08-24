@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.Game;
+import model.Card;
+
 public class ViewImpl extends JFrame implements View {
 	
 	/**
@@ -21,13 +24,17 @@ public class ViewImpl extends JFrame implements View {
 	
 	public static final int SCREEN_WIDTH =1200;
 	public static final int SCREEN_HEIGHT =900;
+	Game game;
+	GameView gameV;
 
 	//private final JPanel main; 
 	//private final CardLayout card = new CardLayout();
 	//private final List<String> Cards;
 	
-	public ViewImpl() {
+	public ViewImpl(Game game) {
 		super();
+		this.gameV = new GameView(this, game);
+		this.game = game;
 		this.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
 		this.setTitle("BLACKJACK");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.jpg")).getImage());
@@ -37,18 +44,13 @@ public class ViewImpl extends JFrame implements View {
 		this.setResizable(true);
 		this.getContentPane().setBackground(new Color(0,81,0));
 		                    
-		this.switchPanel(new MenuView(this));
+		this.switchPanel(new MenuView(this,this.game,this.gameV));
 		/*this.pack();
 		this.setLocationRelativeTo(null);*/
 		
 	}
 
 
-	@Override
-	public void draw(JLabel[] playerCardLabel, JLabel[] dealerCardLabel) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	@Override
@@ -68,6 +70,12 @@ public class ViewImpl extends JFrame implements View {
 		
 		
 		
+		
+	}
+
+
+	@Override
+	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand) {
 		
 	}
 

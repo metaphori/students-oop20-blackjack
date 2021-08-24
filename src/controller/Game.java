@@ -47,4 +47,11 @@ public class Game {
 
 	//stati della view
 	//menu...
+	
+	public List<Card> getPlayerHand(){
+		return this.playerHand;
+	}
+	public List<Card> getDilerHand(){
+		return this.dealerHand;
+	}
 }

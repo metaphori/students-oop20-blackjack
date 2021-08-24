@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.Game;
+
 public class MenuView extends JPanel{
 
 	/**
@@ -27,10 +29,14 @@ public class MenuView extends JPanel{
 	JButton start,exit;
 	JLabel title,label;
 	private final View view;
+	private Game game;
+	private GameView gameV;
 	
-	public MenuView(final View view) {
+	public MenuView(final View view, Game game,GameView gameV) {
 
 		super();
+		this.gameV = gameV;
+		this.game = game;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
@@ -101,6 +107,6 @@ public class MenuView extends JPanel{
 		
 	}
 	void newPlay() {
-		this.view.switchPanel(new GameView(view));
+		this.view.switchPanel(gameV);
 	}
 }

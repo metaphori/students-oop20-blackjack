@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import controller.Game;
 import model.Card;
 import model.Suit;
 import model.Values;
@@ -37,12 +38,14 @@ public class GameView extends JPanel {
 	JButton button[] = new JButton[6];
 	int cardWidth = 150;
 	int cardHeight = 213;
+	private Game game;
 	//Suit suit;
 	//Values values;
     
     
-	public GameView(View view) {
+	public GameView(View view,Game game) {
 		super();
+		this.game = game;
 		image.findImages();
 		this.view = view;
 		this.setBounds(0, 0, 1200, 900);
@@ -85,14 +88,19 @@ public class GameView extends JPanel {
 				//System.out.print("c'è");
 				//ImageIcon image1 = new ImageIcon();
 				//image1 = this.image.GetSpades().get(card);
-				for (Card key : this.image.getSpades().keySet()) {
-			        ImageIcon value =  this.image.getSpades().get(key);
-			        playerCardLabel[i].setIcon(value);
-			    }
+				//for (Card key : this.image.getSpades().keySet()) {
+			      // ImageIcon value =  this.image.getSpades().get(key);
+			        //playerCardLabel[i].setIcon(value);
+			    //}
+				//playerCardLabel[i].setIcon(this.setImage());
 			}
 			//playerCardLabel[i].setIcon(this.image.GetSpades().entr
 			//playerCardLabel[i].setIcon(this.image.getFront().get(0));
+			//playerCardLabel[i].setIcon(setImage());
 			playerPanel.add(playerCardLabel[i]);
+		}
+		for(Card c : this.game.getPlayerHand()) {
+			setImage();
 		}
 		for(int i = 1; i < 6; i++) {
 			dealerCardLabel[i] = new JLabel();
@@ -145,5 +153,48 @@ public class GameView extends JPanel {
 			buttonPanel.add(button[i]);
 		}		
 	}
-
+	public void setImage() {
+		int cont =0;
+		ImageIcon value = null;
+		for(Card c : this.game.getPlayerHand()) {
+			cont++;
+			switch(c.getSuit()) {
+			case spades:
+				for(Card ca: this.image.getSpades().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getSpades().get(ca);
+						this.playerCardLabel[cont].setIcon(value);
+					}
+				}
+			case clubs:
+				for(Card ca: this.image.getClubs().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getClubs().get(ca);
+						this.playerCardLabel[cont].setIcon(value);
+					}
+				}
+			case diamods:
+				for(Card ca: this.image.getDiamonds().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getDiamonds().get(ca);
+						this.playerCardLabel[cont].setIcon(value);
+					}
+				}
+			case heart:
+				for(Card ca: this.image.getHeart().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getHeart().get(ca);
+						this.playerCardLabel[cont].setIcon(value);
+					}
+				}
+			default:
+				break;
+			}
+		}
+	}
+	
 }
