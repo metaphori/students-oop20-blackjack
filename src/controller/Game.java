@@ -19,17 +19,25 @@ public class Game {
 	private int valueplayerhand;
 	private int dealerplayerhand;
 	private DealerDraw dealerDraw = new DealerDraw();
+	private PlayerDraw playerDraw = new PlayerDraw();
+	private PlayerTurn playerTurn = new PlayerTurn();
 	
 	
 	public Game() {
 		this.dealerDraw.DrawCard();
-		//new PlayerDraw();
+		this.playerDraw.DrawCard();
 		this.dealerDraw.DrawCard();
-		//new PlayerTurn();
-		this.dealerHand = this.dealerDraw.getDealer();
+		this.playerDraw.DrawCard();
+		//this.playerTurn.PlayerDoTurn();
+
 		
-		System.out.println("prima carta: "+ this.dealerHand.get(0).getSuit()+this.dealerHand.get(0).getValues()
+		this.dealerHand = this.dealerDraw.getDealerHand();
+		this.playerHand = this.playerDraw.getPlayerHand();
+		
+		System.out.println("D:prima carta: "+ this.dealerHand.get(0).getSuit()+this.dealerHand.get(0).getValues()
 				+"seconda carta: " + this.dealerHand.get(1).getSuit()+this.dealerHand.get(1).getValues());
+		System.out.println("P:prima carta: "+ this.playerHand.get(0).getSuit()+this.playerHand.get(0).getValues()
+				+"seconda carta: " + this.playerHand.get(1).getSuit()+this.playerHand.get(1).getValues());
 	}
 	//stati di gioco
 	//geme finished
