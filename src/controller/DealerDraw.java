@@ -36,7 +36,7 @@ public class DealerDraw {
 		return 0;
 	}
 	
-	public List<Card> getDealer(){
+	public List<Card> getDealerHand(){
 		return this.dealerHand;
 	}
 
