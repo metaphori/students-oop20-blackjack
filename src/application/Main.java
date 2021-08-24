@@ -1,6 +1,9 @@
 package application;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> a74311995dc2ca4ae0f939e45f65a46c391fe2ec
 import utility.ImageLoader;
 import controller.Game;
 import view.View;
