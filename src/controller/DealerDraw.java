@@ -3,41 +3,35 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 import model.Card;
+import model.Values;
 
 
 public class DealerDraw {
 	
 	private List<Card> dealerHand  = new ArrayList<Card>();
-	private int dealerNumberCard;
-	private int dealerValueInHands;
+	private int pointdealer;
 	private PickCard pickCard = new PickCard();
 	
-	public DealerDraw() {
-
-	}
+	public DealerDraw() {}
 	
 	public void DrawCard() {
-		this.dealerNumberCard++;
-		//this.dealerhand.setDilerhand(pickCard.pickedCard());
 		this.dealerHand.add(pickCard.pickedCard());
-	}
-	
-	public int getDealerNumberCard() {
-		return dealerNumberCard;
-	}
-	
-	public int getDealerValueInHands() {
-//		Set<Card> listdealerHands = dealerHand.getDilerhand();
-//		
-//		for(Card carta: listdealerHands) {
-//			this.dealerValueInHands += Values.getValues(carta.getValues());
-//		}
-//		return dealerValueInHands;
-		return 0;
 	}
 	
 	public List<Card> getDealerHand(){
 		return this.dealerHand;
 	}
+	
+	public int getDealerNumberCard() {
+		return this.dealerHand.size();
+	}
+	
+	public int getPointDealer() {
 
+		for(Card carta: this.dealerHand){
+			this.pointdealer += Values.getValues(carta.getValues());
+		}
+		return this.pointdealer;
+	}
+	
 }
