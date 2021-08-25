@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 
 import controller.Game;
 import model.Card;
+import model.State;
 
 public class ViewImpl extends JFrame implements View {
 	
@@ -74,9 +75,15 @@ public class ViewImpl extends JFrame implements View {
 	}
 
 
+
+
 	@Override
-	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand) {
-		
+	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state) {
+		// TODO Auto-generated method stub
+		this.gameV.render(scoreDealer, scorePlayer, playerHand, dealerHand, state);
 	}
+
+
+
 
 }

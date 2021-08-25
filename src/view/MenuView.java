@@ -77,10 +77,12 @@ public class MenuView extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				newPlay();
 				
 			}
 		});
+		
 		
 		this.exit = new JButton("EXIT");
 		this.exit.setBounds(500,750,200,50);

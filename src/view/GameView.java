@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -16,6 +17,7 @@ import javax.swing.JTextArea;
 
 import controller.Game;
 import model.Card;
+import model.State;
 import model.Suit;
 import model.Values;
 import utility.ImageLoader;
@@ -100,7 +102,7 @@ public class GameView extends JPanel {
 			playerPanel.add(playerCardLabel[i]);
 		}
 		for(Card c : this.game.getPlayerHand()) {
-			setImage();
+			//setImage();
 		}
 		for(int i = 1; i < 6; i++) {
 			dealerCardLabel[i] = new JLabel();
@@ -147,16 +149,16 @@ public class GameView extends JPanel {
 			button[i].setFocusPainted(false);
 			button[i].setBorder(null);
 			button[i].setFont(new Font("Times New Roman", Font.PLAIN, 42));
-			//button[i].addActionListener(game.aHandler);
+			button[i].addActionListener(game.actionHandler);
 			button[i].setActionCommand(""+i);
-			button[i].setVisible(true);
+			button[i].setVisible(false);
 			buttonPanel.add(button[i]);
 		}		
 	}
-	public void setImage() {
+	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
 		int cont =0;
 		ImageIcon value = null;
-		for(Card c : this.game.getPlayerHand()) {
+		for(Card c : playerHand) {
 			cont++;
 			switch(c.getSuit()) {
 			case spades:
@@ -194,6 +196,72 @@ public class GameView extends JPanel {
 			default:
 				break;
 			}
+			
+		}
+		for(Card c : dealerHand) {
+			cont++;
+			switch(c.getSuit()) {
+			case spades:
+				for(Card ca: this.image.getSpades().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getSpades().get(ca);
+						this.dealerCardLabel[cont].setIcon(value);
+					}
+				}
+			case clubs:
+				for(Card ca: this.image.getClubs().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getClubs().get(ca);
+						this.dealerCardLabel[cont].setIcon(value);
+					}
+				}
+			case diamods:
+				for(Card ca: this.image.getDiamonds().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getDiamonds().get(ca);
+						this.dealerCardLabel[cont].setIcon(value);
+					}
+				}
+			case heart:
+				for(Card ca: this.image.getHeart().keySet()) {
+					if(ca.getValues() == c.getValues()) {
+						//System.out.print("funzia");
+						value = this.image.getHeart().get(ca);
+						this.dealerCardLabel[cont].setIcon(value);
+					}
+				}
+			}
+		}
+	}
+	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state) {
+		switch(state) {
+		case win:
+		
+		case lose:
+			
+		case natural:
+			
+		case playerTurn:
+			
+		case dealerTurn:
+			
+		case drow:	
+			
+		default:
+			this.setImage(playerHand,dealerHand);
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: ?");
+			this.dealerCardLabel[2].setIcon(this.image.getFront());
+			this.messageText.setText("Vuoi pescare?");
+			this.button[1].setVisible(true);
+			this.button[1].setText("Pesca");
+			this.button[2].setVisible(true);
+			this.button[2].setText("Stai");
+			
+			
 		}
 	}
 	
