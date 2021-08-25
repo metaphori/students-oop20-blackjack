@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -25,7 +26,8 @@ public class MenuView extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 6*5;
+	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height /6*5;
 	JButton start,exit;
 	JLabel title,label;
 	private final View view;
@@ -40,7 +42,7 @@ public class MenuView extends JPanel{
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		this.setBounds(0, 0, 1200, 600);
+		this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 		this.setOpaque(false);
 		
 		this.title = new JLabel("BlackJack");
