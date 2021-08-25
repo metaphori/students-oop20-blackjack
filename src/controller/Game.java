@@ -15,16 +15,16 @@ import view.View;;
 public class Game {
 	
 	//int pickedcard;
-	private int playerNumberCard = 0;
-	private int dealerNumberCard = 0;
+//	private int playerNumberCard = 0;
+//	private int dealerNumberCard = 0;
 	private List<Card> playerHand = new ArrayList<Card>();
 	private List<Card> dealerHand = new ArrayList<Card>();
 	private int valueplayerhand;
-	private int dealerplayerhand;
+	private int valuedealerhand;
 	public ActionHandler actionHandler = new ActionHandler(this);
 	private DealerDraw dealerDraw = new DealerDraw();
 	private PlayerDraw playerDraw = new PlayerDraw();
-	private PlayerTurn playerTurn = new PlayerTurn();
+//	private PlayerTurn playerTurn = new PlayerTurn();
 	private State currentState;
 	private View view;
 	
@@ -44,16 +44,18 @@ public class Game {
 		
 		this.dealerHand = this.dealerDraw.getDealerHand();
 		this.playerHand = this.playerDraw.getPlayerHand();
+		this.valuedealerhand = this.dealerDraw.getPointDealer();
+		this.valueplayerhand = this.playerDraw.getPointPlayer();
 		
 		if(this.playerHand.size() == 2 && this.playerDraw.getPointPlayer() == 21) {
 			this.currentState = State.natural;
-		}else if(this.playerDraw.getPointPlayer() < 22) {
+		}else if(this.valueplayerhand < 22) {
 			this.currentState = State.playerTurn;
-		}else if(this.playerDraw.getPointPlayer() > 21) {
+		}else if(this.valueplayerhand > 21) {
 			this.currentState = State.lose;
 		}
 		
-		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(), playerHand, dealerHand, currentState);
+		this.view.draw(this.valuedealerhand, this.valueplayerhand, playerHand, dealerHand, currentState);
 		
 		System.out.println("D:prima carta: "+ this.dealerHand.get(0).getSuit()+this.dealerHand.get(0).getValues()
 				+"seconda carta: " + this.dealerHand.get(1).getSuit()+this.dealerHand.get(1).getValues());
