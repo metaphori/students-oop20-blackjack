@@ -14,6 +14,7 @@ public class Main {
         ImageLoader.getImageLoader().findImages();
         final Game game = new Game();
         final View view = new ViewImpl(game);
+        game.setView(view);
 
     }
 }

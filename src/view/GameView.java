@@ -245,7 +245,15 @@ public class GameView extends JPanel {
 		case natural:
 			
 		case playerTurn:
-			
+			this.setImage(playerHand,dealerHand);
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: ?");
+			this.dealerCardLabel[2].setIcon(this.image.getFront());
+			this.messageText.setText("Vuoi pescare?");
+			this.button[1].setVisible(true);
+			this.button[1].setText("Pesca");
+			this.button[2].setVisible(true);
+			this.button[2].setText("Stai");
 		case dealerTurn:
 			
 		case drow:	

@@ -4,10 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import controller.Game;
+import view.MenuView;
+import view.View;
 
 public class ActionHandler implements ActionListener{
 
 	private Game game;
+
 	
 	public ActionHandler(Game game) {
 		// TODO Auto-generated constructor stub
@@ -17,16 +20,21 @@ public class ActionHandler implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String command = e.getActionCommand();
+		
 		switch (command) {
-		case "hit":
+		case "1"://pesca
 			//richiamare la classe per pescare una carta del player
 			//condizioni con if-else con lo status
 			break;
-		case "stand":
-			
+		case "2"://stai
 			break;
-
-		default:
+		case "3":
+			break;
+		case "4":
+			break;
+		case "5":
+			break;
+		case "6":
 			break;
 		}
 	}

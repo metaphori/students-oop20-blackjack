@@ -77,7 +77,6 @@ public class MenuView extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				newPlay();
 				
 			}
@@ -110,5 +109,6 @@ public class MenuView extends JPanel{
 	}
 	void newPlay() {
 		this.view.switchPanel(gameV);
+		this.game.newGame();
 	}
 }

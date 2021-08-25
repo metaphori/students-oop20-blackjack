@@ -7,7 +7,8 @@ import java.util.Set;
 
 import model.Card;
 import model.State;
-import utility.ActionHandler;;
+import utility.ActionHandler;
+import view.View;;
 
 
 
@@ -25,9 +26,16 @@ public class Game {
 	private PlayerDraw playerDraw = new PlayerDraw();
 	private PlayerTurn playerTurn = new PlayerTurn();
 	private State currentState;
+	private View view;
 	
 	
-	public Game() {
+	public Game() {}
+	
+	public void setView(View view) {
+		this.view = view;
+	}
+	
+	public void newGame() {
 		this.dealerDraw.DrawCard();
 		this.playerDraw.DrawCard();
 		this.dealerDraw.DrawCard();
@@ -44,6 +52,8 @@ public class Game {
 		}else if(this.playerDraw.getPointPlayer() > 21) {
 			this.currentState = State.lose;
 		}
+		
+		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(), playerHand, dealerHand, currentState);
 		
 		System.out.println("D:prima carta: "+ this.dealerHand.get(0).getSuit()+this.dealerHand.get(0).getValues()
 				+"seconda carta: " + this.dealerHand.get(1).getSuit()+this.dealerHand.get(1).getValues());
