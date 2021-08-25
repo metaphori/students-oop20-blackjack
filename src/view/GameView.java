@@ -85,29 +85,13 @@ public class GameView extends JPanel {
 		for(int i = 1; i < 6; i++) {
 			playerCardLabel[i] = new JLabel();
 			playerCardLabel[i].setVisible(true);
-			Card card = new Card(Suit.spades,Values.one);
-			if(!this.image.getSpades().isEmpty()) {
-				//System.out.print("c'è");
-				//ImageIcon image1 = new ImageIcon();
-				//image1 = this.image.GetSpades().get(card);
-				//for (Card key : this.image.getSpades().keySet()) {
-			      // ImageIcon value =  this.image.getSpades().get(key);
-			        //playerCardLabel[i].setIcon(value);
-			    //}
-				//playerCardLabel[i].setIcon(this.setImage());
-			}
-			//playerCardLabel[i].setIcon(this.image.GetSpades().entr
-			//playerCardLabel[i].setIcon(this.image.getFront().get(0));
-			//playerCardLabel[i].setIcon(setImage());
 			playerPanel.add(playerCardLabel[i]);
 		}
-		for(Card c : this.game.getPlayerHand()) {
-			//setImage();
-		}
+		
 		for(int i = 1; i < 6; i++) {
 			dealerCardLabel[i] = new JLabel();
 			dealerCardLabel[i].setVisible(true);
-			dealerCardLabel[i].setIcon(this.image.getFront());
+			//dealerCardLabel[i].setIcon(this.image.getFront());
 			dealerPanel.add(dealerCardLabel[i]);
 		}	
 		
@@ -160,77 +144,71 @@ public class GameView extends JPanel {
 		ImageIcon value = null;
 		for(Card c : playerHand) {
 			cont++;
-			switch(c.getSuit()) {
-			case spades:
+			if(c.getSuit() == Suit.spades) {
 				for(Card ca: this.image.getSpades().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getSpades().get(ca);
-						this.playerCardLabel[cont].setIcon(value);
+						//value = this.image.getSpades().get(ca);
+						this.playerCardLabel[cont].setIcon(this.image.getSpades().get(ca));
 					}
 				}
-			case clubs:
+			}else if(c.getSuit() == Suit.clubs) {
 				for(Card ca: this.image.getClubs().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getClubs().get(ca);
-						this.playerCardLabel[cont].setIcon(value);
+						this.playerCardLabel[cont].setIcon(this.image.getClubs().get(ca));
 					}
 				}
-			case diamods:
+			}else if(c.getSuit() == Suit.diamods) {
 				for(Card ca: this.image.getDiamonds().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getDiamonds().get(ca);
-						this.playerCardLabel[cont].setIcon(value);
+						this.playerCardLabel[cont].setIcon(this.image.getDiamonds().get(ca));
 					}
 				}
-			case heart:
+			}else {
 				for(Card ca: this.image.getHeart().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getHeart().get(ca);
-						this.playerCardLabel[cont].setIcon(value);
+						this.playerCardLabel[cont].setIcon(this.image.getHeart().get(ca));
 					}
 				}
-			default:
-				break;
 			}
 			
 		}
+			
+			
+			
+		int carte = 0;
 		for(Card c : dealerHand) {
-			cont++;
-			switch(c.getSuit()) {
-			case spades:
+			carte++;
+			if(c.getSuit() == Suit.spades) {
 				for(Card ca: this.image.getSpades().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getSpades().get(ca);
-						this.dealerCardLabel[cont].setIcon(value);
+						//value = this.image.getSpades().get(ca);
+						this.dealerCardLabel[carte].setIcon(this.image.getSpades().get(ca));
 					}
 				}
-			case clubs:
+			}else if(c.getSuit() == Suit.clubs) {
 				for(Card ca: this.image.getClubs().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getClubs().get(ca);
-						this.dealerCardLabel[cont].setIcon(value);
+						this.dealerCardLabel[carte].setIcon(this.image.getClubs().get(ca));
 					}
 				}
-			case diamods:
+			}else if(c.getSuit() == Suit.diamods) {
 				for(Card ca: this.image.getDiamonds().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getDiamonds().get(ca);
-						this.dealerCardLabel[cont].setIcon(value);
+						this.dealerCardLabel[carte].setIcon(this.image.getDiamonds().get(ca));
 					}
 				}
-			case heart:
+			}else {
 				for(Card ca: this.image.getHeart().keySet()) {
 					if(ca.getValues() == c.getValues()) {
 						//System.out.print("funzia");
-						value = this.image.getHeart().get(ca);
-						this.dealerCardLabel[cont].setIcon(value);
+						this.dealerCardLabel[carte].setIcon(this.image.getHeart().get(ca));
 					}
 				}
 			}

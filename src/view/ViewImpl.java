@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +24,8 @@ public class ViewImpl extends JFrame implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SCREEN_WIDTH =1200;
-	public static final int SCREEN_HEIGHT =900;
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 6*5;
+	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height /6*5;
 	Game game;
 	GameView gameV;
 
