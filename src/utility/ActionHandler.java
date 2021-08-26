@@ -3,13 +3,17 @@ package utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controller.DealerTurn;
 import controller.Game;
+import controller.PlayerTurn;
 import view.MenuView;
 import view.View;
 
 public class ActionHandler implements ActionListener{
 
 	private Game game;
+	private PlayerTurn playerTurn;
+	private DealerTurn dealerTurn;
 
 	
 	public ActionHandler(Game game) {
@@ -23,8 +27,7 @@ public class ActionHandler implements ActionListener{
 		
 		switch (command) {
 		case "1"://pesca
-			//richiamare la classe per pescare una carta del player
-			//condizioni con if-else con lo status
+				this.playerTurn = new PlayerTurn();
 			break;
 		case "2"://stai
 			break;

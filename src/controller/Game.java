@@ -61,9 +61,10 @@ public class Game {
 				+"seconda carta: " + this.dealerHand.get(1).getSuit()+this.dealerHand.get(1).getValues());
 		System.out.println("P:prima carta: "+ this.playerHand.get(0).getSuit()+this.playerHand.get(0).getValues()
 				+"seconda carta: " + this.playerHand.get(1).getSuit()+this.playerHand.get(1).getValues());
+		System.out.println("D point"+this.valuedealerhand+"P point"+this.valueplayerhand);
 	}
 	//stati di gioco
-	//geme finished
+	//game finished
 	//check result 
 	//reset
 	//player Natural
