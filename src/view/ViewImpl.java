@@ -43,7 +43,7 @@ public class ViewImpl extends JFrame implements View {
 		this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.getContentPane().setBackground(new Color(0,81,0));
 		                    
 		this.switchPanel(new MenuView(this,this.game,this.gameV));

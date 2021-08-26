@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -53,7 +54,7 @@ public class MenuView extends JPanel{
 		
 		BufferedImage image = null;
 		try {
-			image = ImageIO.read(new File("res/view/menu_image1.png"));
+			image = ImageIO.read(new File("res/view/menu_image1_preview_rev_1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
