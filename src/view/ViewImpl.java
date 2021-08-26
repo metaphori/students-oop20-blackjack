@@ -24,7 +24,7 @@ public class ViewImpl extends JFrame implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 4*3;
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 6*5;
 	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height /6*5;
 	Game game;
 	GameView gameV;
@@ -37,18 +37,19 @@ public class ViewImpl extends JFrame implements View {
 		super();
 		this.gameV = new GameView(this, game);
 		this.game = game;
-		this.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+		//this.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
+		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setTitle("BLACKJACK");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.jpg")).getImage());
-		this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
+		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
-		this.setResizable(false);
+		this.setResizable(true);
 		this.getContentPane().setBackground(new Color(0,81,0));
 		                    
 		this.switchPanel(new MenuView(this,this.game,this.gameV));
-		//this.pack();
-		//this.setLocationRelativeTo(null);
+		this.pack();
+		this.setLocationRelativeTo(null);
 		
 	}
 

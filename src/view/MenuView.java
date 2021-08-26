@@ -27,8 +27,8 @@ public class MenuView extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 6*5;
-	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height /6*5;
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	JButton start,exit;
 	JLabel title,label;
 	private final View view;
@@ -43,7 +43,9 @@ public class MenuView extends JPanel{
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		
-		this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		//this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
+		this.setSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setOpaque(false);
 		
 		this.title = new JLabel("BlackJack");

@@ -3,8 +3,10 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -28,6 +30,8 @@ public class GameView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private View view;
     JLabel title;
     JPanel table,dealerPanel,playerPanel;
@@ -50,7 +54,7 @@ public class GameView extends JPanel {
 		this.game = game;
 		image.findImages();
 		this.view = view;
-		this.setBounds(0, 0, 1200, 900);
+		this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
 		this.setOpaque(false);
 		this.setLayout(null);
 		
