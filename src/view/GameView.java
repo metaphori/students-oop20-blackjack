@@ -58,13 +58,6 @@ public class GameView extends JPanel {
 		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
 		this.setOpaque(false);
 		this.setLayout(null);
-		
-		/*this.title = new JLabel("BlackJack");
-		this.title.setFont(new Font("Book Antiqua", Font.PLAIN,90));
-		this.title.setForeground(Color.YELLOW);
-		this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.add(title);*/
-		
 		table = new JPanel();
 		table.setBackground(Color.DARK_GRAY);
 		table.setBounds(25,25,800,525);
