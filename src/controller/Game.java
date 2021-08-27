@@ -95,18 +95,20 @@ public class Game {
 	}
 	
 	public void CheckResult() {
-		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer()) {
+		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() || this.playerDraw.getPlayerNumberCard() > 21) {
 			this.setState(State.lose);
-		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer()) {
+		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer() || this.dealerDraw.getPointDealer() > 21) {
 			this.setState(State.win);
-		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer()) {
+		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPlayerNumberCard() > 21 && this.dealerDraw.getPointDealer() > 21) {
 			this.setState(State.drow);
 		}
 		
 		this.UpdateView();
 	}
 	
-	private void ResetAll() {
-		
+	public void ResetAll() {
+		this.playerDraw.ResetPlayer();
+		this.dealerDraw.ResetDealer();
+		this.newGame();
 	}
 }

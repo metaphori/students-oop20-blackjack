@@ -39,6 +39,10 @@ public class PlayerDraw {
 		return this.playerHand.size();
 	}
 	
+	public void ResetPlayer() {
+		this.playerHand.clear();
+	}
+	
 	public int getPointPlayer() {
 		
 		this.pointplayer = 0;

@@ -35,6 +35,10 @@ public class DealerDraw {
 		return this.dealerHand;
 	}
 	
+	public void ResetDealer() {
+		this.dealerHand.clear();
+	}
+	
 	public int getDealerNumberCard() {
 		return this.dealerHand.size();
 	}

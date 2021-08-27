@@ -40,7 +40,8 @@ public class ActionHandler implements ActionListener{
 		case "2"://stai
 				this.dealerTurn.newTurnDealer(this.dealerDraw,this.game);
 			break;
-		case "3":
+		case "0"://rigioca
+				this.game.ResetAll();
 			break;
 		case "4":
 			break;
