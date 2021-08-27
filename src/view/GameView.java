@@ -240,7 +240,6 @@ public class GameView extends JPanel {
 			break;
 		case natural:
 			this.resetButton();
-			
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);
@@ -249,7 +248,7 @@ public class GameView extends JPanel {
 			this.messageText.setText("Hai fatto blackJack!");
 			break;
 		case playerTurn:
-			
+			this.resetButton();
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
@@ -262,7 +261,6 @@ public class GameView extends JPanel {
 			break;
 		case dealerTurn:
 			this.resetButton();
-			
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);

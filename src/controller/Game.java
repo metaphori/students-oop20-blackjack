@@ -95,11 +95,11 @@ public class Game {
 	}
 	
 	public void CheckResult() {
-		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() || this.playerDraw.getPlayerNumberCard() > 21) {
+		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() || this.playerDraw.getPointPlayer() > 21) {
 			this.setState(State.lose);
 		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer() || this.dealerDraw.getPointDealer() > 21) {
 			this.setState(State.win);
-		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPlayerNumberCard() > 21 && this.dealerDraw.getPointDealer() > 21) {
+		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPointPlayer() > 21 && this.dealerDraw.getPointDealer() > 21) {
 			this.setState(State.drow);
 		}
 		
