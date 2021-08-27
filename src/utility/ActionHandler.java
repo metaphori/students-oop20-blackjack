@@ -38,6 +38,7 @@ public class ActionHandler implements ActionListener{
 				this.playerTurn.newTurnPlayer(this.playerDraw,this.game);
 			break;
 		case "2"://stai
+				this.dealerTurn.newTurnDealer(this.dealerDraw,this.game);
 			break;
 		case "3":
 			break;

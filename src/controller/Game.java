@@ -93,4 +93,20 @@ public class Game {
 	public void setState(State state) {
 		this.currentState = state;
 	}
+	
+	public void CheckResult() {
+		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer()) {
+			this.setState(State.lose);
+		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer()) {
+			this.setState(State.win);
+		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer()) {
+			this.setState(State.drow);
+		}
+		
+		this.UpdateView();
+	}
+	
+	private void ResetAll() {
+		
+	}
 }
