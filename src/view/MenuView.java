@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.Game;
+import utility.ImageLoader;
 
 public class MenuView extends JPanel{
 
@@ -34,11 +35,13 @@ public class MenuView extends JPanel{
 	private final View view;
 	private Game game;
 	private GameView gameV;
+	ImageLoader image;
 	
-	public MenuView(final View view, Game game,GameView gameV) {
+	public MenuView(final View view, Game game,GameView gameV,ImageLoader images) {
 
 		super();
 		this.gameV = gameV;
+		this.image = images;
 		this.game = game;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -54,14 +57,15 @@ public class MenuView extends JPanel{
 		this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
 		
-		BufferedImage image = null;
+		/*BufferedImage image = null;
 		try {
 			image = ImageIO.read(new File("res/view/menu_image1_preview_rev_1.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	    this.label = new JLabel(new ImageIcon(image));
+		}*/
+	    this.label = new JLabel();
+	    this.label.setIcon(this.image.getMenuImage());
 	    this.label.setAlignmentX(Component.CENTER_ALIGNMENT);
 	    this.add(label);
 	    

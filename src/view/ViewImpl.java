@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import controller.Game;
 import model.Card;
 import model.State;
+import utility.ImageLoader;
 
 public class ViewImpl extends JFrame implements View {
 	
@@ -28,15 +29,17 @@ public class ViewImpl extends JFrame implements View {
 	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	Game game;
 	GameView gameV;
+	ImageLoader image;
 
 	//private final JPanel main; 
 	//private final CardLayout card = new CardLayout();
 	//private final List<String> Cards;
 	
-	public ViewImpl(Game game) {
+	public ViewImpl(Game game,ImageLoader image) {
 		
 		super();
-		this.gameV = new GameView(this, game);
+		this.image = image;
+		this.gameV = new GameView(this, game,image);
 		this.game = game;
 		this.setPreferredSize(new Dimension(this.chooseWidthDimension(),this.chooseHeightDimension()));
 		this.setTitle("BLACKJACK");
@@ -45,7 +48,7 @@ public class ViewImpl extends JFrame implements View {
 		this.setLayout(null);
 		this.setResizable(true);
 		this.getContentPane().setBackground(new Color(0,81,0));                   
-		this.switchPanel(new MenuView(this,this.game,this.gameV));
+		this.switchPanel(new MenuView(this,this.game,this.gameV,image));
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}

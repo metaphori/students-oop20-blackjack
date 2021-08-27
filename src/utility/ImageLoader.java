@@ -16,9 +16,7 @@ public class ImageLoader {
 	
 	ImageIcon front = new ImageIcon();
 	//ImageIcon spade[] = new ImageIcon[14];
-	ImageIcon heart[] = new ImageIcon[14];
-	ImageIcon club[] = new ImageIcon[14];
-	ImageIcon diamond[] = new ImageIcon[14];
+	ImageIcon menu = new ImageIcon();
 	
 	private final Map<Card,ImageIcon> spades = new HashMap<>();
 	private final Map<Card,ImageIcon> diamonds = new HashMap<>();
@@ -28,6 +26,10 @@ public class ImageLoader {
 	public void findImages() {
 		URL imgURL = ImageLoader.class.getResource("/backk.png");
 		this.front = loadImage(imgURL);
+		
+		imgURL = ImageLoader.class.getResource("/menu_image1_preview_rev_1.png");
+		this.menu = loadImage(imgURL);
+		
 		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_spades.png");
 			this.spades.put(new Card(Suit.spades,Values.getValue(i)),loadImage(imgURL));
@@ -50,6 +52,9 @@ public class ImageLoader {
     }
 	public Map<Card,ImageIcon> getSpades(){
 		return this.spades;
+	}
+	public ImageIcon getMenuImage() {
+		return this.menu;
 	}
 	public Map<Card,ImageIcon> getHeart(){
 		return this.hearts;
