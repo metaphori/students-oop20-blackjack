@@ -21,10 +21,12 @@ public class Game {
 	private List<Card> dealerHand = new ArrayList<Card>();
 //	private int valueplayerhand;
 //	private int valuedealerhand;
-	public ActionHandler actionHandler = new ActionHandler(this);
+//	public ActionHandler actionHandler = new ActionHandler(this);
 	private DealerDraw dealerDraw = new DealerDraw();
 	private PlayerDraw playerDraw = new PlayerDraw();
-//	private PlayerTurn playerTurn = new PlayerTurn();
+	private PlayerTurn playerTurn = new PlayerTurn();
+	private DealerTurn dealerTurn = new DealerTurn();
+	public ActionHandler actionHandler = new ActionHandler(this,dealerDraw,playerDraw,dealerTurn,playerTurn);
 	private State currentState;
 	private View view;
 	

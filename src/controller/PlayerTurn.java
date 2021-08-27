@@ -4,10 +4,15 @@ import model.State;
 
 public class PlayerTurn {
 	
-	private PlayerDraw playerDraw = new PlayerDraw();
+	private PlayerDraw playerDraw;
 	private Game game;
 	
 	public PlayerTurn() {
+	}
+	
+	public void newTurnPlayer(PlayerDraw playerDraw2, Game game) {
+		this.playerDraw = playerDraw2;
+		this.game = game;
 		this.playerDraw.DrawCard();
 		
 		if(this.playerDraw.getPointPlayer() > 21) {

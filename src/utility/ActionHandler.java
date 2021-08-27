@@ -3,8 +3,10 @@ package utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controller.DealerDraw;
 import controller.DealerTurn;
 import controller.Game;
+import controller.PlayerDraw;
 import controller.PlayerTurn;
 import view.MenuView;
 import view.View;
@@ -14,11 +16,17 @@ public class ActionHandler implements ActionListener{
 	private Game game;
 	private PlayerTurn playerTurn;
 	private DealerTurn dealerTurn;
+	private PlayerDraw playerDraw;
+	private DealerDraw dealerDraw;
 
 	
-	public ActionHandler(Game game) {
+	public ActionHandler(Game game, DealerDraw dealerDraw, PlayerDraw playerDraw, DealerTurn dealerTurn, PlayerTurn playerTurn) {
 		// TODO Auto-generated constructor stub
 		this.game = game;
+		this.playerTurn = playerTurn;
+		this.playerDraw = playerDraw;
+		this.dealerTurn = dealerTurn;
+		this.dealerDraw = dealerDraw;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -27,7 +35,7 @@ public class ActionHandler implements ActionListener{
 		
 		switch (command) {
 		case "1"://pesca
-				this.playerTurn = new PlayerTurn();
+				this.playerTurn.newTurnPlayer(this.playerDraw,this.game);
 			break;
 		case "2"://stai
 			break;
