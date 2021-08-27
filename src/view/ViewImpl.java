@@ -24,8 +24,8 @@ public class ViewImpl extends JFrame implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width / 6*5;
-	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height /6*5;
+	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
 	Game game;
 	GameView gameV;
 
@@ -34,28 +34,39 @@ public class ViewImpl extends JFrame implements View {
 	//private final List<String> Cards;
 	
 	public ViewImpl(Game game) {
+		
 		super();
 		this.gameV = new GameView(this, game);
 		this.game = game;
-		//this.setSize(SCREEN_WIDTH,SCREEN_HEIGHT);
-		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
+		this.setPreferredSize(new Dimension(this.chooseWidthDimension(),this.chooseHeightDimension()));
 		this.setTitle("BLACKJACK");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.jpg")).getImage());
-		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
 		this.setResizable(true);
-		this.getContentPane().setBackground(new Color(0,81,0));
-		                    
+		this.getContentPane().setBackground(new Color(0,81,0));                   
 		this.switchPanel(new MenuView(this,this.game,this.gameV));
 		this.pack();
 		this.setLocationRelativeTo(null);
-		
 	}
 
 
 
-
+	private int chooseWidthDimension() {
+		int width = SCREEN_WIDTH;
+		if(width<=1280) {
+			return width;
+		}
+		 return(width/(3)*2);
+	}
+	
+	private int chooseHeightDimension() {
+		int height = SCREEN_HEIGHT;
+		if(height<=720) {
+			return height;
+		}
+		 return(height/(3)*2);
+	}
 	@Override
 	public void resetToMenu() {
 		// TODO Auto-generated method stub
