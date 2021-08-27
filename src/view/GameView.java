@@ -94,16 +94,17 @@ public class GameView extends JPanel {
 		}	
 		
 		dealerScore = new JLabel();
-		dealerScore.setBounds(50,0,200,50);
+		dealerScore.setBounds(50,5,200,30);
 		dealerScore.setForeground(Color.white);
-		dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 36));
+		dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		dealerScore.setText("Dealer : 0");
+		
 		table.add(dealerScore);
 		
 		playerScore = new JLabel();
-		playerScore.setBounds(50,480,200,50);
+		playerScore.setBounds(50,490,200,30);
 		playerScore.setForeground(Color.white);
-		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 36));
+		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		playerScore.setText("You : 0");
 		table.add(playerScore);
 	
@@ -112,24 +113,27 @@ public class GameView extends JPanel {
 		messageText = new JTextArea();
 		messageText.setBounds(100,560,670,80);
 		messageText.setBackground(null);
-		messageText.setForeground(Color.DARK_GRAY);
+		messageText.setForeground(Color.white);
 		messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
 		messageText.setEditable(false);
-		messageText.setText("Hai vinto");
+		messageText.setText("");
+		messageText.setOpaque(false);
 		this.add(messageText);
 		
 		buttonPanel = new JPanel();
 		buttonPanel.setBounds(920,250,200,300);
 		buttonPanel.setBackground(null);
 		buttonPanel.setLayout(new GridLayout(6,1));
+		buttonPanel.setOpaque(false);
 		this.add(buttonPanel);
 		
 		for(int i = 0; i < 6; i++) {
 			button[i] = new JButton();
 			button[i].setBackground(null);
-			button[i].setForeground(Color.DARK_GRAY);
+			button[i].setForeground(Color.white);
 			button[i].setFocusPainted(false);
-			button[i].setBorder(null);
+			//button[i].setBorder(null);
+			button[i].setContentAreaFilled(false);
 			button[i].setFont(new Font("Times New Roman", Font.PLAIN, 42));
 			button[i].addActionListener(game.actionHandler);
 			button[i].setActionCommand(""+i);
@@ -215,23 +219,40 @@ public class GameView extends JPanel {
 	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state) {
 		switch(state) {
 		case win:
-		
-		case lose:
-			
-		case natural:
 			this.resetButton();
-			this.setImage(playerHand,dealerHand);
+			
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
-			//this.dealerCardLabel[2].setIcon(this.image.getFront());
+			this.setImage(playerHand,dealerHand);
+			this.button[0].setVisible(true);
+			this.button[0].setText("Rigioca");
+			this.messageText.setText("Hai vinto!");
+			break;
+		case lose:
+			this.resetButton();
+			
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setImage(playerHand,dealerHand);
+			this.button[0].setVisible(true);
+			this.button[0].setText("Rigioca");
+			this.messageText.setText("Hai Perso!");
+			break;
+		case natural:
+			this.resetButton();
+			
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai fatto blackJack!");
 			break;
 		case playerTurn:
-			this.setImage(playerHand,dealerHand);
+			
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
+			this.setImage(playerHand,dealerHand);
 			this.dealerCardLabel[2].setIcon(this.image.getFront());
 			this.messageText.setText("Vuoi pescare?");
 			this.button[1].setVisible(true);
@@ -241,11 +262,20 @@ public class GameView extends JPanel {
 			break;
 		case dealerTurn:
 			this.resetButton();
-			this.setImage(playerHand,dealerHand);
+			
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setImage(playerHand,dealerHand);
+			break;
 		case drow:	
-			
+			this.resetButton();
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setImage(playerHand,dealerHand);
+			this.messageText.setText("pareggio");
+			this.button[0].setVisible(true);
+			this.button[0].setText("Rigioca");
+			break;
 		default:
 			this.setImage(playerHand,dealerHand);
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
@@ -256,7 +286,7 @@ public class GameView extends JPanel {
 			this.button[1].setText("Pesca");
 			this.button[2].setVisible(true);
 			this.button[2].setText("Stai");
-			
+			break;
 			
 		}
 	}

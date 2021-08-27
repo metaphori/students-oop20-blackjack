@@ -56,14 +56,6 @@ public class MenuView extends JPanel{
 		this.title.setForeground(Color.YELLOW);
 		this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
-		
-		/*BufferedImage image = null;
-		try {
-			image = ImageIO.read(new File("res/view/menu_image1_preview_rev_1.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	    this.label = new JLabel();
 	    this.label.setIcon(this.image.getMenuImage());
 	    this.label.setAlignmentX(Component.CENTER_ALIGNMENT);
