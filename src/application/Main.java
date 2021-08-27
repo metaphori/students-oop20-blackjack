@@ -10,10 +10,11 @@ public class Main {
 
     public static void main(final String[] args) {
         //new Game();
-
-        ImageLoader.getImageLoader().findImages();
+    	ImageLoader image = new ImageLoader();
+    	image.findImages();
+        //ImageLoader.getImageLoader().findImages();
         final Game game = new Game();
-        final View view = new ViewImpl(game);
+        final View view = new ViewImpl(game,image);
         game.setView(view);
 
     }

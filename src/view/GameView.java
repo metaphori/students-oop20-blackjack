@@ -39,7 +39,7 @@ public class GameView extends JPanel {
     JLabel playerCardLabel[] = new JLabel[6];
 	JLabel dealerCardLabel[] = new JLabel[6];
     JLabel playerScore, dealerScore;
-    ImageLoader image = new ImageLoader();
+    ImageLoader image;
     JTextArea messageText;
     JPanel buttonPanel = new JPanel();
 	JButton button[] = new JButton[6];
@@ -50,10 +50,10 @@ public class GameView extends JPanel {
 	//Values values;
     
     
-	public GameView(View view,Game game) {
+	public GameView(View view,Game game,ImageLoader image) {
 		super();
 		this.game = game;
-		image.findImages();
+		this.image = image;
 		this.view = view;
 		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
 		this.setOpaque(false);
@@ -219,7 +219,15 @@ public class GameView extends JPanel {
 		case lose:
 			
 		case natural:
-			
+			this.resetButton();
+			this.setImage(playerHand,dealerHand);
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			//this.dealerCardLabel[2].setIcon(this.image.getFront());
+			this.button[0].setVisible(true);
+			this.button[0].setText("Rigioca");
+			this.messageText.setText("Hai fatto blackJack!");
+			break;
 		case playerTurn:
 			this.setImage(playerHand,dealerHand);
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
@@ -230,8 +238,12 @@ public class GameView extends JPanel {
 			this.button[1].setText("Pesca");
 			this.button[2].setVisible(true);
 			this.button[2].setText("Stai");
+			break;
 		case dealerTurn:
-			
+			this.resetButton();
+			this.setImage(playerHand,dealerHand);
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 		case drow:	
 			
 		default:
@@ -248,5 +260,9 @@ public class GameView extends JPanel {
 			
 		}
 	}
-	
+	private void resetButton() {
+		for(int i = 0; i < 6; i++) {
+			this.button[i].setVisible(false);
+		}
+	}
 }
