@@ -28,19 +28,19 @@ public class ImageLoader {
 	public void findImages() {
 		URL imgURL = ImageLoader.class.getResource("/backk.png");
 		this.front = loadImage(imgURL);
-		for(int i = 1; i<14;i++) {
+		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_spades.png");
 			this.spades.put(new Card(Suit.spades,Values.getValue(i)),loadImage(imgURL));
 		}
-		for(int i = 1; i<14;i++) {
+		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_diamonds.png");
 			this.diamonds.put(new Card(Suit.diamods,Values.getValue(i)),loadImage(imgURL));
 		}
-		for(int i = 1; i<14;i++) {
+		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_plub.png");
 			this.clubs.put(new Card(Suit.clubs,Values.getValue(i)),loadImage(imgURL));
 		}
-		for(int i = 1; i<14;i++) {
+		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_heart.png");
 			this.hearts.put(new Card(Suit.heart,Values.getValue(i)),loadImage(imgURL));
 		}

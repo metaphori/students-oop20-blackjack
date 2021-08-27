@@ -15,7 +15,15 @@ public class DealerDraw {
 	public DealerDraw() {}
 	
 	public void DrawCard() {
-		this.dealerHand.add(pickCard.pickedCard());
+		Card card = pickCard.pickedCard();
+		if(card.getValues() == Values.one) {
+			if(getPointDealer() < 22) {//forse per correttezza bisognerebbe prendere il punteggio fare +11 e controllare che sia minore a 22
+				card.setAceOrNot(Values.getValue(14));
+			}else if(getPointDealer() > 22 && this.dealerHand.size() < 5) {
+				card.setAceOrNot(Values.getValue(1));	
+			}
+		}
+		this.dealerHand.add(card);
 	}
 	
 	public List<Card> getDealerHand(){
@@ -27,7 +35,7 @@ public class DealerDraw {
 	}
 	
 	public int getPointDealer() {
-
+		this.pointdealer = 0;
 		for(Card carta: this.dealerHand){
 			this.pointdealer += Values.getValues(carta.getValues());
 		}

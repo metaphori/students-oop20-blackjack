@@ -18,6 +18,10 @@ public class Card {
 		return values;
 	}
 	
+	public void setAceOrNot(Values values) {
+		this.values = values;
+	}
+	
 	
 
 }

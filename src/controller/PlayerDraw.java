@@ -15,7 +15,16 @@ public class PlayerDraw {
 	public PlayerDraw() {}
 
 	public void DrawCard() {
-		this.playerHand.add(pickCard.pickedCard());	
+		
+		Card card = pickCard.pickedCard();
+		if(card.getValues() == Values.one) {
+			if(getPointPlayer() < 22) {
+				card.setAceOrNot(Values.getValue(14));
+			}else if(getPointPlayer() > 22 && this.playerHand.size() < 5) {
+				card.setAceOrNot(Values.getValue(1));
+			}
+		}
+		this.playerHand.add(card);	
 		
 	}
 	
@@ -29,10 +38,11 @@ public class PlayerDraw {
 	
 	public int getPointPlayer() {
 		
+		this.pointplayer = 0;
 		for(Card carta:this.playerHand) {
 			this.pointplayer += Values.getValues(carta.getValues());
 		}
 		return this.pointplayer;
-		
 	}
+	
 }
