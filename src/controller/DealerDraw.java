@@ -16,14 +16,19 @@ public class DealerDraw {
 	
 	public void DrawCard() {
 		Card card = pickCard.pickedCard();
-		if(card.getValues() == Values.one) {
-			if(getPointDealer() < 22) {//forse per correttezza bisognerebbe prendere il punteggio fare +11 e controllare che sia minore a 22
-				card.setAceOrNot(Values.getValue(14));
-			}else if(getPointDealer() > 22 && this.dealerHand.size() < 5) {
-				card.setAceOrNot(Values.getValue(1));	
+		if(card.getValues() == Values.one && getPointDealer()+11 < 22) {
+			card.setAceOrNot(Values.getValue(14));
+			this.dealerHand.add(card);
+		}else if(card.getValues() == Values.one && getPointDealer()+11 > 22 && this.dealerHand.size() < 6) {
+			card.setAceOrNot(Values.getValue(1));	
+			this.dealerHand.add(card);
+			this.setNoAce();
+		}else{
+			this.dealerHand.add(card);
+			if(getPointDealer() > 21) {
+				this.setNoAce();
 			}
 		}
-		this.dealerHand.add(card);
 	}
 	
 	public List<Card> getDealerHand(){
@@ -41,5 +46,24 @@ public class DealerDraw {
 		}
 		return this.pointdealer;
 	}
+	
+	private void setNoAce() {
+		List<Card> playerHandtemp = new ArrayList<Card>();
+		int countace = 1;
+		for(Card carta: this.dealerHand) {
+			if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
+				carta.setAceOrNot(Values.getValue(1));
+				playerHandtemp.add(carta);
+				countace++;
+			}else {
+				playerHandtemp.add(carta);
+			}
+			countace++;
+		}
+		this.dealerHand.clear();
+		this.dealerHand = playerHandtemp;
+		
+	}
+
 	
 }
