@@ -17,7 +17,7 @@ public class PickCard {
 	public Card pickedCard() {
 		
 		int pickedCardNum = random.nextInt(4)+1;
-		int pickedCardValue = random.nextInt(13)+1;	
+		int pickedCardValue = random.nextInt(2)+1;	
 //		spade 0
 //		club 1 
 //		diamons 2 
