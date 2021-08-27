@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class GameView extends JPanel {
 		this.game = game;
 		image.findImages();
 		this.view = view;
-		this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
+		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
 		this.setOpaque(false);
 		this.setLayout(null);
 		
@@ -66,13 +67,13 @@ public class GameView extends JPanel {
 		
 		table = new JPanel();
 		table.setBackground(Color.DARK_GRAY);
-		table.setBounds(50,50,850,600);
+		table.setBounds(25,25,800,525);
 		table.setLayout(null);
 		table.setVisible(true);
 		
 		
 		dealerPanel = new JPanel();
-		dealerPanel.setBounds(100,120,cardWidth*5,cardHeight);
+		dealerPanel.setBounds(55,70,cardWidth*5,cardHeight);
 		dealerPanel.setBackground(null);
 		dealerPanel.setOpaque(false);
 		dealerPanel.setLayout(new GridLayout(1,5));
@@ -80,7 +81,7 @@ public class GameView extends JPanel {
 		this.add(dealerPanel);
 				
 		playerPanel = new JPanel();
-		playerPanel.setBounds(100,370,cardWidth*5,cardHeight);
+		playerPanel.setBounds(55,300,cardWidth*5,cardHeight);
 		playerPanel.setOpaque(false);
 		playerPanel.setLayout(new GridLayout(1,5));
 		playerPanel.setVisible(true);
@@ -100,23 +101,23 @@ public class GameView extends JPanel {
 		}	
 		
 		dealerScore = new JLabel();
-		dealerScore.setBounds(50,10,200,50);
+		dealerScore.setBounds(50,0,200,50);
 		dealerScore.setForeground(Color.white);
-		dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 42));
+		dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		dealerScore.setText("Dealer : 0");
 		table.add(dealerScore);
 		
 		playerScore = new JLabel();
-		playerScore.setBounds(50,540,200,50);
+		playerScore.setBounds(50,480,200,50);
 		playerScore.setForeground(Color.white);
-		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 42));
+		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 36));
 		playerScore.setText("You : 0");
 		table.add(playerScore);
 	
 		this.add(table,BorderLayout.CENTER);
 		
 		messageText = new JTextArea();
-		messageText.setBounds(230,680,720,100);
+		messageText.setBounds(100,560,670,80);
 		messageText.setBackground(null);
 		messageText.setForeground(Color.DARK_GRAY);
 		messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
@@ -125,7 +126,7 @@ public class GameView extends JPanel {
 		this.add(messageText);
 		
 		buttonPanel = new JPanel();
-		buttonPanel.setBounds(920,340,200,300);
+		buttonPanel.setBounds(920,250,200,300);
 		buttonPanel.setBackground(null);
 		buttonPanel.setLayout(new GridLayout(6,1));
 		this.add(buttonPanel);
