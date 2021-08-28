@@ -16,7 +16,7 @@ public class PlayerTurn {
 		this.playerDraw.DrawCard();
 		
 		if(this.playerDraw.getPointPlayer() > 21) {
-			this.game.setState(State.dealerTurn);
+			this.game.setState(State.lose);
 			this.game.UpdateView();
 		}else if (this.playerDraw.getPointPlayer() < 22) {
 			if(this.playerDraw.getPlayerHand().size() > 1 && this.playerDraw.getPlayerHand().size() < 5) {
