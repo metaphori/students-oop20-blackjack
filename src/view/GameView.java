@@ -24,6 +24,7 @@ import model.State;
 import model.Suit;
 import model.Values;
 import utility.ImageLoader;
+import utility.RoundedBorder;
 
 public class GameView extends JPanel {
 	
@@ -43,9 +44,11 @@ public class GameView extends JPanel {
     JTextArea messageText;
     JPanel buttonPanel = new JPanel();
 	JButton button[] = new JButton[6];
+	JButton buttonChip[] = new JButton[4];
 	int cardWidth = 150;
 	int cardHeight = 213;
 	private Game game;
+	JPanel chips;
 	//Suit suit;
 	//Values values;
     
@@ -121,7 +124,7 @@ public class GameView extends JPanel {
 		this.add(messageText);
 		
 		buttonPanel = new JPanel();
-		buttonPanel.setBounds(920,250,200,300);
+		buttonPanel.setBounds(920,150,200,300);
 		buttonPanel.setBackground(null);
 		buttonPanel.setLayout(new GridLayout(6,1));
 		buttonPanel.setOpaque(false);
@@ -139,7 +142,21 @@ public class GameView extends JPanel {
 			button[i].setActionCommand(""+i);
 			button[i].setVisible(false);
 			buttonPanel.add(button[i]);
-		}		
+		}
+		this.chips = new JPanel();
+		this.chips.setLayout(new GridLayout(2,2));
+		this.chips.setBounds(850,400,400,270);
+		this.chips.setBackground(Color.white);
+		for(int i = 0; i < 4; i++) {
+			buttonChip[i] = new JButton();
+			buttonChip[i].setVisible(true);
+			buttonChip[i].setBorder(new RoundedBorder(100));
+			buttonChip[i].setForeground(Color.BLUE);
+			buttonChip[i].setIcon(this.image.getChipImage());
+			this.chips.add(buttonChip[i]);
+		}
+		
+		this.add(this.chips);
 	}
 	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
 		int cont =0;
@@ -275,6 +292,7 @@ public class GameView extends JPanel {
 			this.button[0].setText("Rigioca");
 			break;
 		default:
+			this.resetButton();
 			this.setImage(playerHand,dealerHand);
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
