@@ -17,8 +17,8 @@ public class Game {
 	//int pickedcard;
 //	private int playerNumberCard = 0;
 //	private int dealerNumberCard = 0;
-	private List<Card> playerHand = new ArrayList<Card>();
-	private List<Card> dealerHand = new ArrayList<Card>();
+//	private List<Card> playerHand = new ArrayList<Card>();
+//	private List<Card> dealerHand = new ArrayList<Card>();
 //	private int valueplayerhand;
 //	private int valuedealerhand;
 //	public ActionHandler actionHandler = new ActionHandler(this);
@@ -43,47 +43,19 @@ public class Game {
 		this.dealerDraw.DrawCard();
 		this.playerDraw.DrawCard();
 		
-//		this.dealerHand = this.dealerDraw.getDealerHand();
-//		this.playerHand = this.playerDraw.getPlayerHand();
-//		this.valuedealerhand = this.dealerDraw.getPointDealer();
-//		this.valueplayerhand = this.playerDraw.getPointPlayer();
 		
-		if(this.playerDraw.getPlayerHand().size() == 2 && this.playerDraw.getPointPlayer() == 21) {
-			this.currentState = State.natural;
+		if(this.playerDraw.getPlayerHand().size() == 2 && this.playerDraw.getPointPlayer() == 21) { //&& this.dealerDraw.getDealerHand().get(0).getValues().getV() != 10) {
+			this.currentState = State.natural;			
 		}else if(this.playerDraw.getPointPlayer() < 22) {
 			this.currentState = State.playerTurn;
 		}
-		
-//		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(),
-//				this.playerHand, this.dealerHand, this.currentState);
-		this.UpdateView();
-//		System.out.println("D:prima carta: "+ this.dealerDraw.getDealerHand().get(0).getSuit()+this.dealerHand.get(0).getValues()
-//				+"seconda carta: " + this.dealerHand.get(1).getSuit()+this.dealerHand.get(1).getValues());
-//		System.out.println("P:prima carta: "+ this.playerHand.get(0).getSuit()+this.playerHand.get(0).getValues()
-//				+"seconda carta: " + this.playerHand.get(1).getSuit()+this.playerHand.get(1).getValues());
-//		System.out.println("D point"+this.valuedealerhand+"P point"+this.valueplayerhand);
-	}
-	//stati di gioco
-	//game finished
-	//check result 
-	//reset
-	//player Natural
 
-	//stati della view
-	//menu...
-	public void UpdateView() {
-		this.dealerHand = this.dealerDraw.getDealerHand();
-		this.playerHand = this.playerDraw.getPlayerHand();
-		
+		this.UpdateView();
+	}
+
+	public void UpdateView() {		
 		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(),
-				this.playerHand, this.dealerHand, this.currentState);
-	}
-	public List<Card> getPlayerHand(){
-		return this.playerHand;
-	}
-	
-	public List<Card> getDilerHand(){
-		return this.dealerHand;
+				this.playerDraw.getPlayerHand(), this.dealerDraw.getDealerHand(), this.currentState);
 	}
 	
 	public State getState() {
@@ -95,12 +67,14 @@ public class Game {
 	}
 	
 	public void CheckResult() {
-		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() || this.playerDraw.getPointPlayer() > 21) {
+		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() && this.dealerDraw.getPointDealer() < 22 || this.playerDraw.getPointPlayer() > 21) {
 			this.setState(State.lose);
-		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer() || this.dealerDraw.getPointDealer() > 21) {
+		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer()) {
 			this.setState(State.win);
-		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPointPlayer() > 21 && this.dealerDraw.getPointDealer() > 21) {
+		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPointPlayer() < 21 && this.dealerDraw.getPointDealer() < 21) {
 			this.setState(State.drow);
+		}else if(this.dealerDraw.getPointDealer() > 21) {
+			this.setState(State.win);
 		}
 		
 		this.UpdateView();
