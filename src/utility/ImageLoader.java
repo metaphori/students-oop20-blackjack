@@ -17,7 +17,7 @@ public class ImageLoader {
 	ImageIcon front = new ImageIcon();
 	//ImageIcon spade[] = new ImageIcon[14];
 	ImageIcon menu = new ImageIcon();
-	ImageIcon chip = new ImageIcon();
+	ImageIcon chip[] = new ImageIcon[3];
 	
 	private final Map<Card,ImageIcon> spades = new HashMap<>();
 	private final Map<Card,ImageIcon> diamonds = new HashMap<>();
@@ -31,8 +31,10 @@ public class ImageLoader {
 		imgURL = ImageLoader.class.getResource("/menuImage.png");
 		this.menu = loadImage(imgURL);
 		
-		imgURL = ImageLoader.class.getResource("/0_chip1.png");
-		this.chip = loadImage(imgURL);
+		for(int i = 0; i< 3;i++) {
+			imgURL = ImageLoader.class.getResource("/"+i+"_chip.png");
+			this.chip[i] = loadImage(imgURL);
+		}
 		
 		for(int i = 1; i<15;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_spades.png");
@@ -60,7 +62,7 @@ public class ImageLoader {
 	public ImageIcon getMenuImage() {
 		return this.menu;
 	}
-	public ImageIcon getChipImage() {
+	public ImageIcon[] getChipImage() {
 		return this.chip;
 	}
 	public Map<Card,ImageIcon> getHeart(){

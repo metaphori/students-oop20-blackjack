@@ -146,13 +146,14 @@ public class GameView extends JPanel {
 		this.chips = new JPanel();
 		this.chips.setLayout(new GridLayout(2,2));
 		this.chips.setBounds(850,400,400,270);
-		this.chips.setBackground(Color.white);
-		for(int i = 0; i < 4; i++) {
+		this.chips.setBackground(new Color(0,81,0));
+		for(int i = 0; i < 3; i++) {
 			buttonChip[i] = new JButton();
 			buttonChip[i].setVisible(true);
-			buttonChip[i].setBorder(new RoundedBorder(100));
-			buttonChip[i].setForeground(Color.BLUE);
-			buttonChip[i].setIcon(this.image.getChipImage());
+			buttonChip[i].setBackground(new Color(0,81,0));
+			buttonChip[i].setBorder(null);
+			buttonChip[i].setFocusPainted(false);
+			buttonChip[i].setIcon(this.image.getChipImage()[i]);
 			this.chips.add(buttonChip[i]);
 		}
 		
