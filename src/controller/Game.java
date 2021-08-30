@@ -98,11 +98,14 @@ public class Game {
 	
 	public void setBalanceAfterBet() {
 		this.balance -= this.bet;
+		this.UpdateView();
 	}
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();
 		this.dealerDraw.ResetDealer();
 		this.bet = 0;
+		this.setState(State.bet);
+		this.UpdateView();
 		//this.newGame();
 	}
 }

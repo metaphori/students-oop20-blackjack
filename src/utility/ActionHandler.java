@@ -49,7 +49,7 @@ public class ActionHandler implements ActionListener{
 			this.game.setBalanceAfterBet();
 			break;
 		case "chips0"://bet 20
-			this.game.setBet(Chip.twenty);
+ 			this.game.setBet(Chip.twenty);
 			//this.game.setBalanceAfterBet();
 			break;
 		case "chips1"://bet50
