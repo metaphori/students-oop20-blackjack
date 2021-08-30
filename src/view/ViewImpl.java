@@ -46,7 +46,7 @@ public class ViewImpl extends JFrame implements View {
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.jpg")).getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLayout(null);
-		this.setResizable(true);
+		this.setResizable(false);
 		this.getContentPane().setBackground(new Color(0,81,0));                   
 		this.switchPanel(new MenuView(this,this.game,this.gameV,image));
 		this.pack();
