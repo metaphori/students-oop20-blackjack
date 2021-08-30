@@ -105,6 +105,6 @@ public class Game {
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();
 		this.dealerDraw.ResetDealer();
-		this.newGame();
+		//this.newGame();
 	}
 }

@@ -3,11 +3,13 @@ package utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controller.Bet;
 import controller.DealerDraw;
 import controller.DealerTurn;
 import controller.Game;
 import controller.PlayerDraw;
 import controller.PlayerTurn;
+import model.Chip;
 import view.MenuView;
 import view.View;
 
@@ -18,6 +20,7 @@ public class ActionHandler implements ActionListener{
 	private DealerTurn dealerTurn;
 	private PlayerDraw playerDraw;
 	private DealerDraw dealerDraw;
+	private Bet bet;
 
 	
 	public ActionHandler(Game game, DealerDraw dealerDraw, PlayerDraw playerDraw, DealerTurn dealerTurn, PlayerTurn playerTurn) {
@@ -27,6 +30,7 @@ public class ActionHandler implements ActionListener{
 		this.playerDraw = playerDraw;
 		this.dealerTurn = dealerTurn;
 		this.dealerDraw = dealerDraw;
+		this.bet = new Bet(this.game);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -43,11 +47,20 @@ public class ActionHandler implements ActionListener{
 		case "0"://rigioca
 				this.game.ResetAll();
 			break;
-		case "4":
+		case "3":
+			this.game.newGame();
 			break;
-		case "5":
+		case "chips0":
+			this.bet.setBet(Chip.twenty);
+			this.bet.overbet();
 			break;
-		case "6":
+		case "chips1":
+			this.bet.setBet(Chip.fifty);
+			this.bet.overbet();
+			break;
+		case "chips2":
+			this.bet.setBet(Chip.hundred);
+			this.bet.overbet();
 			break;
 		}
 	}

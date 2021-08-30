@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import controller.Bet;
 import controller.Game;
 import model.Card;
 import model.State;
@@ -157,9 +160,12 @@ public class GameView extends JPanel {
 			buttonChip[i].setBackground(new Color(0,81,0));
 			buttonChip[i].setBorder(null);
 			buttonChip[i].setFocusPainted(false);
+			buttonChip[i].addActionListener(game.actionHandler);
+			buttonChip[i].setActionCommand("chips"+i);
 			buttonChip[i].setIcon(this.image.getChipImage()[i]);
 			this.chips.add(buttonChip[i]);
 		}
+		this.Listener(buttonChip);
 		
 		this.balance = new JLabel();
 		this.balance.setForeground(Color.white);
@@ -174,6 +180,22 @@ public class GameView extends JPanel {
 		this.chips.add(this.bet);
 		
 		this.add(this.chips);
+	}
+	private void Listener(JButton button[]) {
+		for(int i = 0; i<3;i++) {
+			button[i].addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					setLabelBet();
+				}
+			});
+		}
+	}
+	private void setLabelBet() {
+		this.balance.setText(String.valueOf(this.game.getBalance()));
+		this.bet.setText(String.valueOf(this.game.getBet()));
 	}
 	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
 		int cont =0;
