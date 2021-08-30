@@ -5,6 +5,7 @@ public enum Values {
 	nine(9),ten(10),jack(10),queen(10),king(10),ace(11);
 
 	private int v;
+	
 	Values(int v) {
 		// TODO Auto-generated constructor stub
 		this.v = v;

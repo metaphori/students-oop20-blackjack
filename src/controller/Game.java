@@ -22,6 +22,8 @@ public class Game {
 //	private int valueplayerhand;
 //	private int valuedealerhand;
 //	public ActionHandler actionHandler = new ActionHandler(this);
+	private int balance = 0;
+	private int bet = 0;
 	private DealerDraw dealerDraw = new DealerDraw();
 	private PlayerDraw playerDraw = new PlayerDraw();
 	private PlayerTurn playerTurn = new PlayerTurn();
@@ -31,7 +33,9 @@ public class Game {
 	private View view;
 	
 	
-	public Game() {}
+	public Game() {
+		this.balance = 1000;
+	}
 	
 	public void setView(View view) {
 		this.view = view;
@@ -45,7 +49,8 @@ public class Game {
 		
 		
 		if(this.playerDraw.getPlayerHand().size() == 2 && this.playerDraw.getPointPlayer() == 21) { //&& this.dealerDraw.getDealerHand().get(0).getValues().getV() != 10) {
-			this.currentState = State.natural;			
+			this.currentState = State.natural;
+			this.balance += this.bet*2.5;
 		}else if(this.playerDraw.getPointPlayer() < 22) {
 			this.currentState = State.playerTurn;
 		}
@@ -71,13 +76,30 @@ public class Game {
 			this.setState(State.lose);
 		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer()) {
 			this.setState(State.win);
+			this.balance += this.bet*2;
 		}else if(this.dealerDraw.getPointDealer() == this.playerDraw.getPointPlayer() && this.playerDraw.getPointPlayer() < 21 && this.dealerDraw.getPointDealer() < 21) {
 			this.setState(State.drow);
+			this.balance += this.bet;
 		}else if(this.dealerDraw.getPointDealer() > 21) {
 			this.setState(State.win);
+			this.balance += this.bet*2;
 		}
 		
 		this.UpdateView();
+	}
+	
+	public int getBalance() {
+		return this.balance;
+	}
+	
+	public int getBet() {
+		return this.bet;
+	}
+	
+	public void setBet(int betplayer) {
+		this.bet=0;
+		this.bet = betplayer;
+		this.balance -= this.bet;
 	}
 	
 	public void ResetAll() {
