@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import model.Card;
+import model.Chip;
 import model.State;
 import utility.ActionHandler;
 import view.View;;
@@ -60,7 +61,7 @@ public class Game {
 
 	public void UpdateView() {		
 		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(),
-				this.playerDraw.getPlayerHand(), this.dealerDraw.getDealerHand(), this.currentState);
+				this.playerDraw.getPlayerHand(), this.dealerDraw.getDealerHand(), this.currentState, this.balance, this.bet);
 	}
 	
 	public State getState() {
@@ -88,23 +89,20 @@ public class Game {
 		this.UpdateView();
 	}
 	
-	public int getBalance() {
-		return this.balance;
+	
+	public void setBet(Chip chip) {
+		this.bet += Chip.getChipValue(chip);
+		this.setState(State.bet);
+		this.UpdateView();
 	}
 	
-	public int getBet() {
-		return this.bet;
-	}
-	
-	public void setBet(int betplayer) {
-		this.bet=0;
-		this.bet = betplayer;
+	public void setBalanceAfterBet() {
 		this.balance -= this.bet;
 	}
-	
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();
 		this.dealerDraw.ResetDealer();
+		this.bet = 0;
 		//this.newGame();
 	}
 }

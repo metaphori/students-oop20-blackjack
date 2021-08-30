@@ -3,7 +3,6 @@ package utility;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import controller.Bet;
 import controller.DealerDraw;
 import controller.DealerTurn;
 import controller.Game;
@@ -20,7 +19,6 @@ public class ActionHandler implements ActionListener{
 	private DealerTurn dealerTurn;
 	private PlayerDraw playerDraw;
 	private DealerDraw dealerDraw;
-	private Bet bet;
 
 	
 	public ActionHandler(Game game, DealerDraw dealerDraw, PlayerDraw playerDraw, DealerTurn dealerTurn, PlayerTurn playerTurn) {
@@ -30,7 +28,6 @@ public class ActionHandler implements ActionListener{
 		this.playerDraw = playerDraw;
 		this.dealerTurn = dealerTurn;
 		this.dealerDraw = dealerDraw;
-		this.bet = new Bet(this.game);
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -47,20 +44,21 @@ public class ActionHandler implements ActionListener{
 		case "0"://rigioca
 				this.game.ResetAll();
 			break;
-		case "3":
+		case "3"://gioca
 			this.game.newGame();
+			this.game.setBalanceAfterBet();
 			break;
-		case "chips0":
-			this.bet.setBet(Chip.twenty);
-			this.bet.overbet();
+		case "chips0"://bet 20
+			this.game.setBet(Chip.twenty);
+			//this.game.setBalanceAfterBet();
 			break;
-		case "chips1":
-			this.bet.setBet(Chip.fifty);
-			this.bet.overbet();
+		case "chips1"://bet50
+			this.game.setBet(Chip.fifty);
+			//this.game.setBalanceAfterBet();
 			break;
-		case "chips2":
-			this.bet.setBet(Chip.hundred);
-			this.bet.overbet();
+		case "chips2"://bet100
+			this.game.setBet(Chip.hundred);
+			//this.game.setBalanceAfterBet();
 			break;
 		}
 	}

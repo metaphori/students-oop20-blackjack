@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import controller.Bet;
 import controller.Game;
 import model.Card;
 import model.State;
@@ -194,8 +193,8 @@ public class GameView extends JPanel {
 		}
 	}
 	private void setLabelBet() {
-		this.balance.setText(String.valueOf(this.game.getBalance()));
-		this.bet.setText(String.valueOf(this.game.getBet()));
+		this.balance.setText("");
+		this.bet.setText("");
 	}
 	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
 		int cont =0;
@@ -279,7 +278,7 @@ public class GameView extends JPanel {
 			}
 		}
 	}
-	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state) {
+	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
 		switch(state) {
 		case win:
 			this.resetGame();

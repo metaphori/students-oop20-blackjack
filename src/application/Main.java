@@ -1,7 +1,6 @@
 package application;
 
 import utility.ImageLoader;
-import controller.Bet;
 import controller.Game;
 import view.View;
 import view.ViewImpl;

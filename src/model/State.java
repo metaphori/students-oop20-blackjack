@@ -6,6 +6,7 @@ public enum State {
 	natural,
 	playerTurn,
 	dealerTurn,
-	drow;
+	drow,
+	bet;
 	//reset?
 }
