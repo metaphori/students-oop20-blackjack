@@ -74,7 +74,11 @@ public class Game {
 	
 	public void CheckResult() {
 		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() && this.dealerDraw.getPointDealer() < 22 || this.playerDraw.getPointPlayer() > 21) {
-			this.setState(State.lose);
+			if(this.checkBalance()) {
+				this.setState(State.broke);
+			}else {
+				this.setState(State.lose);
+			}
 		}else if(this.dealerDraw.getPointDealer() < this.playerDraw.getPointPlayer()) {
 			this.setState(State.win);
 			this.balance += this.bet*2;
@@ -92,7 +96,13 @@ public class Game {
 	
 	public void setBet(Chip chip) {
 		this.bet += Chip.getChipValue(chip);
-		this.setState(State.bet);
+		if(this.balance - this.bet >= 0) {
+
+			this.setState(State.bet);
+		}else {
+			this.setState(State.nobet);
+		}
+		
 		this.UpdateView();
 	}
 	
@@ -100,6 +110,15 @@ public class Game {
 		this.balance -= this.bet;
 		this.UpdateView();
 	}
+	
+	public boolean checkBalance() {
+		if(this.balance == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();
 		this.dealerDraw.ResetDealer();

@@ -339,6 +339,29 @@ public class GameView extends JPanel {
 			this.button[0].setText("Rigioca");
 			this.balance.setText(String.valueOf(balance));
 			break;
+		case broke:
+			System.out.println("soldi finiti");
+			System.exit(0);
+			break;
+		case nobet:
+			this.resetGame();
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: ?");
+			messageText.setText("non puoi puntare piu di quello che hai");
+			this.button[3].setVisible(true);
+			this.button[3].setText("Gioca");
+			this.balance.setText(String.valueOf(balance));
+			this.bet.setText(String.valueOf(bet));
+			for(int i =0; i<3; i++) {
+				this.buttonChip[i].setEnabled(false);
+			}
+			for(int i = 1; i<6;i++) {
+				this.playerCardLabel[i].setIcon(image.getFront());
+				this.playerCardLabel[i].setVisible(true);
+				this.dealerCardLabel[i].setIcon(image.getFront());
+				this.dealerCardLabel[i].setVisible(true);
+			}
+			break;
 		default:
 			this.resetGame();
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
