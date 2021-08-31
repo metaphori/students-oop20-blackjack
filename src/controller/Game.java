@@ -111,7 +111,7 @@ public class Game {
 	}
 	
 	public boolean checkBalance() {
-		if(this.balance == 0) {
+		if(this.balance < 20) {
 			return true;
 		}else {
 			return false;
