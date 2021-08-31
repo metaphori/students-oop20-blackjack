@@ -17,6 +17,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -340,8 +341,17 @@ public class GameView extends JPanel {
 			this.balance.setText(String.valueOf(balance));
 			break;
 		case broke:
-			System.out.println("soldi finiti");
-			System.exit(0);
+			this.resetGame();
+			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: ?");
+			this.setImage(playerHand,dealerHand);
+			this.messageText.setText("Hai Perso!");
+			JOptionPane.showMessageDialog(null, 
+                    "Hai esaurito il saldo", 
+                    "ATTENZIONE", 
+                    JOptionPane.WARNING_MESSAGE);
+//			System.out.println("soldi finiti");
+//			System.exit(0);
 			break;
 		case nobet:
 			this.resetGame();
