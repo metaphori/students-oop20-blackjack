@@ -72,7 +72,10 @@ public class ViewImpl extends JFrame implements View {
 	}
 	@Override
 	public void resetToMenu() {
-		// TODO Auto-generated method stub
+		this.getContentPane().removeAll();
+		this.setLayout(new BorderLayout());
+		this.add(new MenuView(this, game, new GameView(this, game, image), image));
+		this.setVisible(true);
 		
 	}
 
