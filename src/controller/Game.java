@@ -133,7 +133,7 @@ public class Game {
 			if(this.balance - this.bet - Chip.getChipValue(Chip.twenty) < 0) {
 				this.setState(State.nobet);
 				this.UpdateView();
-				this.setWhichCannotChangeChip(0);
+//				this.setWhichCannotChangeChip(0);
 				doit = false;
 			}
 			return doit;
@@ -141,7 +141,7 @@ public class Game {
 			if(this.balance - this.bet - Chip.getChipValue(Chip.fifty) < 0) {
 				this.setState(State.nobet);
 				this.UpdateView();
-				this.setWhichCannotChangeChip(1);
+//				this.setWhichCannotChangeChip(1);
 				doit = false;
 			}
 			return doit;
@@ -149,7 +149,7 @@ public class Game {
 			if(this.balance - this.bet - Chip.getChipValue(Chip.hundred) < 0) {
 				this.setState(State.nobet);
 				this.UpdateView();
-				this.setWhichCannotChangeChip(2);
+//				this.setWhichCannotChangeChip(2);
 				doit = false;
 			}
 			return doit;
@@ -157,13 +157,13 @@ public class Game {
 		return doit;
 	}
 	
-	public void setWhichCannotChangeChip(int numberchipcannotchange) {
-		this.chipcannotchange = numberchipcannotchange;
-	}
-	
-	public int getWhichCannotChangeChip() {
-		return this.chipcannotchange;
-	}
+//	public void setWhichCannotChangeChip(int numberchipcannotchange) {
+//		this.chipcannotchange = numberchipcannotchange;
+//	}
+//	
+//	public int getWhichCannotChangeChip() {
+//		return this.chipcannotchange;
+//	}
 	
 	
 	public void ResetAll() {
