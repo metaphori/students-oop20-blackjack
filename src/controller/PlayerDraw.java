@@ -18,17 +18,18 @@ public class PlayerDraw {
 		Card card = pickCard.pickedCard();
 		if(card.getValues() == Values.one && getPointPlayer()+11 < 22) {
 			card.setAceOrNot(Values.getValue(14));
-			this.playerHand.add(card);
-		}else if(card.getValues() == Values.one && getPointPlayer()+11 > 22 && this.playerHand.size() < 6) {
-			card.setAceOrNot(Values.getValue(1));	
-			this.playerHand.add(card);
-			this.setNoAce();
-		}else{
+//			this.playerHand.add(card);
+		}
+//		else if(card.getValues() == Values.one && getPointPlayer()+11 > 21 && this.playerHand.size() < 6) {
+//			card.setAceOrNot(Values.getValue(1));	
+//			this.playerHand.add(card);
+////			this.setNoAce();
+//		}else{
 			this.playerHand.add(card);
 			if(getPointPlayer() > 21) {
 				this.setNoAce();
 			}
-		}	
+//		}	
 	}
 	
 	public List<Card> getPlayerHand(){
@@ -53,25 +54,30 @@ public class PlayerDraw {
 	}
 	
 	private void setNoAce() {
-		List<Card> playerHandtemp = new ArrayList<Card>();
-		int countace = 1;
-		for(Card carta: this.playerHand) {
-//			if(carta.getValues() == Values.ace && this.playerHand.size() >= 3 && countace ==1 ||countace==2) {
+//		List<Card> playerHandtemp = new ArrayList<Card>();
+//		int countace = 1;
+//		for(Card carta: this.playerHand) {
+//				if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
 //				carta.setAceOrNot(Values.getValue(1));
 //				playerHandtemp.add(carta);
 //				countace++;
-//			}else 
-				if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
-				carta.setAceOrNot(Values.getValue(1));
-				playerHandtemp.add(carta);
-				countace++;
-			}else {
-				playerHandtemp.add(carta);
+//			}else {
+//				playerHandtemp.add(carta);
+//			}
+//			countace++;
+//		}
+//		this.playerHand.clear();
+//		this.playerHand = playerHandtemp;
+
+		for(int i=0;i<this.playerHand.size();i++) {
+			if(playerHand.get(i).getValues().getV() == 11) {
+				playerHand.get(i).setAceOrNot(Values.one);
+				if(this.getPointPlayer() < 21) {
+					break;
+				}
 			}
-			countace++;
 		}
-		this.playerHand.clear();
-		this.playerHand = playerHandtemp;
+
 	}
 	
 	

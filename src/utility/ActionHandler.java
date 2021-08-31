@@ -49,8 +49,10 @@ public class ActionHandler implements ActionListener{
 				this.game.ResetAll();
 			break;
 		case "3"://gioca
-			this.game.newGame();
-			this.game.setBalanceAfterBet();
+			if(this.game.getBet() != 0) {
+				this.game.newGame();
+				this.game.setBalanceAfterBet();
+			}
 			break;
 		case "4":
 			this.game.playAgain();

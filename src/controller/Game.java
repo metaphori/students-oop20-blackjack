@@ -101,6 +101,10 @@ public class Game {
 		this.UpdateView();
 	}
 	
+	public int getBet() {
+		return this.bet;
+	}
+	
 	public void setBalanceAfterBet() {
 		this.balance -= this.bet;
 		this.UpdateView();
