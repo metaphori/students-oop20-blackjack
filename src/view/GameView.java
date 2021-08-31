@@ -10,6 +10,8 @@ import java.awt.LayoutManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.BoxLayout;
@@ -288,7 +290,7 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai vinto!");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case lose:
 			this.resetGame();
@@ -299,7 +301,7 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai Perso!");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case natural:
 			this.resetGame();
@@ -309,7 +311,7 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai fatto blackJack!");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case playerTurn:
 			this.resetGame();
@@ -322,7 +324,7 @@ public class GameView extends JPanel {
 			this.button[1].setText("Pesca");
 			this.button[2].setVisible(true);
 			this.button[2].setText("Stai");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case dealerTurn:
 			this.resetGame();
@@ -338,7 +340,7 @@ public class GameView extends JPanel {
 			this.messageText.setText("pareggio");
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case broke:
 			this.resetGame();
@@ -346,12 +348,23 @@ public class GameView extends JPanel {
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
 			this.messageText.setText("Hai Perso!");
-			JOptionPane.showMessageDialog(null, 
-                    "Hai esaurito il saldo", 
-                    "ATTENZIONE", 
-                    JOptionPane.WARNING_MESSAGE);
-//			System.out.println("soldi finiti");
-//			System.exit(0);
+//			
+			JButton playAgain = new JButton("Rigioca");
+			playAgain.addActionListener(game.actionHandler);
+			playAgain.setActionCommand("4");
+			JButton exit = new JButton ("Esci");
+			exit.addMouseListener(new MouseAdapter() {
+				 @Override
+			        public void mouseClicked(MouseEvent e) {
+			            System.exit(0);;
+
+			        }
+			});
+			Object[] options = {exit,playAgain};
+			Object answer = JOptionPane.showOptionDialog(null, "Saldo esaurito premi ok per uscire", "ATTENZIONE",
+			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+			null, options, options[0]);
+			
 			break;
 		case nobet:
 			this.resetGame();
@@ -360,7 +373,7 @@ public class GameView extends JPanel {
 			messageText.setText("non puoi puntare piu di quello che hai");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
-			this.balance.setText(String.valueOf(balance));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
 			this.bet.setText(String.valueOf(bet));
 			for(int i =0; i<3; i++) {
 				this.buttonChip[i].setEnabled(false);
@@ -379,8 +392,8 @@ public class GameView extends JPanel {
 			messageText.setText("Fai la tua puntatata ------------>");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
-			this.balance.setText(String.valueOf(balance));
-			this.bet.setText(String.valueOf(bet));
+			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.bet.setText(String.valueOf("Puntata:"+bet));
 			for(int i = 1; i<6;i++) {
 				this.playerCardLabel[i].setIcon(image.getFront());
 				this.playerCardLabel[i].setVisible(true);
