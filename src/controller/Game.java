@@ -96,13 +96,7 @@ public class Game {
 	
 	public void setBet(Chip chip) {
 		this.bet += Chip.getChipValue(chip);
-		if(this.balance - this.bet >= 0) {
-
-			this.setState(State.bet);
-		}else {
-			this.setState(State.nobet);
-		}
-		
+		this.setState(State.bet);
 		this.UpdateView();
 	}
 	
@@ -117,6 +111,16 @@ public class Game {
 		}else {
 			return false;
 		}
+	}
+	
+	public void checkbet() {
+		if(this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0
+				|| this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0
+				|| this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0) {
+
+			this.setState(State.nobet);
+			this.UpdateView();
+		}	
 	}
 	
 	public void ResetAll() {
