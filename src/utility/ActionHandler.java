@@ -36,7 +36,11 @@ public class ActionHandler implements ActionListener{
 		
 		switch (command) {
 		case "1"://pesca
-				this.playerTurn.newTurnPlayer(this.playerDraw,this.game);
+				if(this.playerDraw.getPlayerHand().size() < 5) {
+					this.playerTurn.newTurnPlayer(this.playerDraw,this.game);
+				}else {
+					this.dealerTurn.newTurnDealer(this.dealerDraw,this.game);
+				}
 			break;
 		case "2"://stai
 				this.dealerTurn.newTurnDealer(this.dealerDraw,this.game);
@@ -48,16 +52,26 @@ public class ActionHandler implements ActionListener{
 			this.game.newGame();
 			this.game.setBalanceAfterBet();
 			break;
+		case "4":
+			this.game.playAgain();
+			break;
 		case "chips0"://bet 20
- 			this.game.setBet(Chip.twenty);
+			if(this.game.checkbet(Chip.twenty)) {
+				this.game.setBet(Chip.twenty);
+			}
+ 			
 			//this.game.setBalanceAfterBet();
 			break;
 		case "chips1"://bet50
-			this.game.setBet(Chip.fifty);
+			if(this.game.checkbet(Chip.fifty)) {
+				this.game.setBet(Chip.fifty);
+			}
 			//this.game.setBalanceAfterBet();
 			break;
 		case "chips2"://bet100
-			this.game.setBet(Chip.hundred);
+			if(this.game.checkbet(Chip.hundred)) {
+				this.game.setBet(Chip.hundred);
+			}
 			//this.game.setBalanceAfterBet();
 			break;
 		}
