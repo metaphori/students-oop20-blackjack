@@ -361,10 +361,11 @@ public class GameView extends JPanel {
 			        }
 			});
 			Object[] options = {exit,playAgain};
-			Object answer = JOptionPane.showOptionDialog(null, "Saldo esaurito premi ok per uscire", "ATTENZIONE",
+			JOptionPane.showOptionDialog(null, "Saldo esaurito premi ok per uscire", "ATTENZIONE",
 			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 			null, options, options[0]);
 			
+			JOptionPane.getRootFrame().dispose();
 			break;
 		case nobet:
 			this.resetGame();
@@ -374,7 +375,7 @@ public class GameView extends JPanel {
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
 			this.balance.setText("Saldo:"+String.valueOf(balance));
-			this.bet.setText(String.valueOf(bet));
+			this.bet.setText(String.valueOf("Puntata:"+bet));
 			for(int i =0; i<3; i++) {
 				this.buttonChip[i].setEnabled(false);
 			}
