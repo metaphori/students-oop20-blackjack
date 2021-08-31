@@ -347,25 +347,16 @@ public class GameView extends JPanel {
 			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
-			this.messageText.setText("Hai Perso!");
-//			
-			JButton playAgain = new JButton("Rigioca");
-			playAgain.addActionListener(game.actionHandler);
-			playAgain.setActionCommand("4");
-			JButton exit = new JButton ("Esci");
-			exit.addMouseListener(new MouseAdapter() {
-				 @Override
-			        public void mouseClicked(MouseEvent e) {
-			            System.exit(0);;
-
-			        }
-			});
-			Object[] options = {exit,playAgain};
-			JOptionPane.showOptionDialog(null, "Saldo esaurito premi ok per uscire", "ATTENZIONE",
-			JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-			null, options, options[0]);
+			this.messageText.setText("Hai Perso!");		
+		
+			int n = JOptionPane.showConfirmDialog(null, "Saldo esaurito, vuoi rigiocare?", "ATTENZIONE",
+			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+			if(n == JOptionPane.YES_OPTION) {
+				this.game.playAgain();
+			}else {
+				System.exit(0);
+			}
 			
-			JOptionPane.getRootFrame().dispose();
 			break;
 		case nobet:
 			this.resetGame();

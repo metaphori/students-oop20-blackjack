@@ -96,12 +96,12 @@ public class ViewImpl extends JFrame implements View {
 
 
 
-
 	@Override
 	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
 		// TODO Auto-generated method stub
 		this.gameV.render(scoreDealer, scorePlayer, playerHand, dealerHand, state, balance, bet);
 	}
+
 
 
 
