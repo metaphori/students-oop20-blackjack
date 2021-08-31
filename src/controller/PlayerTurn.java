@@ -23,13 +23,17 @@ public class PlayerTurn {
 			}
 			this.game.UpdateView();
 		}else if (this.playerDraw.getPointPlayer() < 22) {
-			if(this.playerDraw.getPlayerHand().size() > 1 && this.playerDraw.getPlayerHand().size() < 5) {
+			if(this.playerDraw.getPlayerHand().size() > 1 && this.playerDraw.getPlayerHand().size() <= 5) {
 				this.game.setState(State.playerTurn);
 				this.game.UpdateView();
-			}else if(this.playerDraw.getPlayerHand().size() == 5) {
+			}
+			else if(this.playerDraw.getPlayerHand().size() == 5) {
 				this.game.setState(State.dealerTurn);
 				this.game.UpdateView();
 			}
+		}else if (this.playerDraw.getPlayerHand().size() == 5) {
+			this.game.setState(State.dealerTurn);
+			this.game.UpdateView();
 		}
 	}
 

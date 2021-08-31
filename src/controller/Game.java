@@ -25,6 +25,7 @@ public class Game {
 //	public ActionHandler actionHandler = new ActionHandler(this);
 	private int balance = 0;
 	private int bet = 0;
+	private int chipcannotchange;//0 = chip 20 1 = chip 50 2 = chip 100
 	private DealerDraw dealerDraw = new DealerDraw();
 	private PlayerDraw playerDraw = new PlayerDraw();
 	private PlayerTurn playerTurn = new PlayerTurn();
@@ -113,15 +114,53 @@ public class Game {
 		}
 	}
 	
-	public void checkbet() {
-		if(this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0
-				|| this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0
-				|| this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0) {
-
-			this.setState(State.nobet);
-			this.UpdateView();
-		}	
+	public boolean checkbet(Chip chip) {
+//		if(this.balance - this.bet - Chip.getChipValue(Chip.twenty) <= 0
+//				|| this.balance - this.bet - Chip.getChipValue(Chip.fifty) <= 0
+//				|| this.balance - this.bet - Chip.getChipValue(Chip.hundred) <= 0) {
+//
+//			this.setState(State.nobet);
+//			this.UpdateView();
+//		}	
+		boolean doit = true;
+		
+		switch (chip) {
+		case twenty:
+			if(this.balance - this.bet - Chip.getChipValue(Chip.twenty) < 0) {
+				this.setState(State.nobet);
+				this.UpdateView();
+				this.setWhichCannotChangeChip(0);
+				doit = false;
+			}
+			return doit;
+		case fifty:
+			if(this.balance - this.bet - Chip.getChipValue(Chip.fifty) < 0) {
+				this.setState(State.nobet);
+				this.UpdateView();
+				this.setWhichCannotChangeChip(1);
+				doit = false;
+			}
+			return doit;
+		case hundred:
+			if(this.balance - this.bet - Chip.getChipValue(Chip.hundred) < 0) {
+				this.setState(State.nobet);
+				this.UpdateView();
+				this.setWhichCannotChangeChip(2);
+				doit = false;
+			}
+			return doit;
+		}
+		return doit;
 	}
+	
+	public void setWhichCannotChangeChip(int numberchipcannotchange) {
+		this.chipcannotchange = numberchipcannotchange;
+	}
+	
+	public int getWhichCannotChangeChip() {
+		return this.chipcannotchange;
+	}
+	
 	
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();

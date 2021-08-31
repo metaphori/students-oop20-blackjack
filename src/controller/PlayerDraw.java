@@ -56,7 +56,11 @@ public class PlayerDraw {
 		List<Card> playerHandtemp = new ArrayList<Card>();
 		int countace = 1;
 		for(Card carta: this.playerHand) {
-			if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
+			if(carta.getValues() == Values.ace && this.playerHand.size() >= 3 && countace ==1 ||countace==2) {
+				carta.setAceOrNot(Values.getValue(1));
+				playerHandtemp.add(carta);
+				countace++;
+			}else if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
 				carta.setAceOrNot(Values.getValue(1));
 				playerHandtemp.add(carta);
 				countace++;
