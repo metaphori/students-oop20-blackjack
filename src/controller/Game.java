@@ -170,4 +170,13 @@ public class Game {
 		this.UpdateView();
 		//this.newGame();
 	}
+	
+	public void playAgain() {
+		this.playerDraw.ResetPlayer();
+		this.dealerDraw.ResetDealer();
+		this.balance = 1000;
+		this.bet = 0;
+		this.setState(State.bet);
+		this.UpdateView();
+	}
 }

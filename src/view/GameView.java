@@ -394,6 +394,9 @@ public class GameView extends JPanel {
 			this.button[3].setText("Gioca");
 			this.balance.setText("Saldo:"+String.valueOf(balance));
 			this.bet.setText(String.valueOf("Puntata:"+bet));
+			for(int i =0; i<3; i++) {
+				this.buttonChip[i].setEnabled(true);
+			}
 			for(int i = 1; i<6;i++) {
 				this.playerCardLabel[i].setIcon(image.getFront());
 				this.playerCardLabel[i].setVisible(true);

@@ -52,6 +52,9 @@ public class ActionHandler implements ActionListener{
 			this.game.newGame();
 			this.game.setBalanceAfterBet();
 			break;
+		case "4":
+			this.game.playAgain();
+			break;
 		case "chips0"://bet 20
 			if(this.game.checkbet(Chip.twenty)) {
 				this.game.setBet(Chip.twenty);
