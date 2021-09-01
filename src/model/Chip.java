@@ -1,16 +1,27 @@
 package model;
-
+/**
+ * 
+ * @author
+ *
+ */
 public enum Chip {
 	twenty(20),
 	fifty(50),
 	hundred(100);
 	
 	private int chip;
-	
+	/**
+	 * 
+	 * @param i
+	 */
 	Chip(int i) {
 		this.setChip(i);
 	}
-	
+	/**
+	 * 
+	 * @param chip
+	 * @return
+	 */
 	public static int getChipValue(Chip chip) {
 		switch (chip) {
 		case twenty:
@@ -23,11 +34,17 @@ public enum Chip {
 			return 0;
 		}
 	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public int getChip() {
 		return chip;
 	}
-
+	/**
+	 * 
+	 * @param chip
+	 */
 	public void setChip(int chip) {
 		this.chip = chip;
 	}

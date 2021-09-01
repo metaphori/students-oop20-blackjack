@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 
+ * @author bon98
+ *
+ */
 public enum Values {
 	one(1),two(2),three(3),four(4),five(5),six(6),seven(7),eight(8),
 	nine(9),ten(10),jack(10),queen(10),king(10),ace(11);
@@ -10,11 +14,18 @@ public enum Values {
 		// TODO Auto-generated constructor stub
 		this.v = v;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getV() {
 		return this.v;
 	}
-	
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static int getValues(Values value) {
 		switch (value) {
 		case one:
@@ -50,7 +61,11 @@ public enum Values {
 		}
 
 	}
-	
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static Values getValue(int value) {
 		switch (value) {
 		case 1:

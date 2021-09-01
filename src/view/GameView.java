@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,17 +12,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import controller.Game;
-import controller.GameImpl;
 import model.Card;
 import model.CardImpl;
 import model.State;
 import model.Suit;
 import utility.ImageLoader;
-
+/**
+ * 
+ * @author
+ *
+ */
 public class GameView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
-    private View view;
     private JPanel table,dealerPanel,playerPanel;
     private JLabel playerCardLabel[] = new JLabel[6];
     private JLabel dealerCardLabel[] = new JLabel[6];
@@ -42,12 +43,16 @@ public class GameView extends JPanel {
     private final static int NBUTTONS = 6;
     private final static int NCHIPS = 3; 
     
-    
+    /**
+     * 
+     * @param view
+     * @param game
+     * @param image
+     */
 	public GameView(View view,Game game,ImageLoader image) {
 		super();
 		this.game = game;
 		this.image = image;
-		this.view = view;
 		this.setOpaque(false);
 		this.setLayout(null);
 		table = new JPanel();
@@ -162,7 +167,10 @@ public class GameView extends JPanel {
 		
 		this.add(this.chips);
 	}
-	//set Card covers
+	
+	/**
+	 * set Card covers
+	 */
 	private void setTable() {
 		for(int i = 1;i<3;i++) {
 			playerCardLabel[i].setIcon(this.image.getFront());
@@ -171,6 +179,11 @@ public class GameView extends JPanel {
 			dealerCardLabel[i].setVisible(true);
 		}
 	}
+	/**
+	 * 
+	 * @param playerHand
+	 * @param dealerHand
+	 */
 	private void setImage(List<CardImpl> playerHand,List<CardImpl> dealerHand) {
 
 		int cont =0;
@@ -244,7 +257,17 @@ public class GameView extends JPanel {
 			}
 		}
 	}
-	//Set Table for each game Status
+/**
+ * Set Table for each game Status
+ * @param scoreDealer
+ * @param scorePlayer
+ * @param playerHand
+ * @param dealerHand
+ * @param state
+ * @param balance
+ * @param bet
+ */
+	
 	public void render(int scoreDealer, int scorePlayer, List<CardImpl> playerHand, List<CardImpl> dealerHand, State state, int balance, int bet) {
 		switch(state) {
 		case win:
@@ -254,7 +277,8 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai vinto!");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
+			this.setInvisiblechips();
 			break;
 		case lose:
 			this.resetGame();
@@ -263,7 +287,8 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai Perso!");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
+			this.setInvisiblechips();
 			break;
 		case natural:
 			this.resetGame();
@@ -272,7 +297,8 @@ public class GameView extends JPanel {
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
 			this.messageText.setText("Hai fatto blackJack!");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
+			this.setInvisiblechips();
 			break;
 		case playerTurn:
 			this.resetGame();
@@ -285,12 +311,14 @@ public class GameView extends JPanel {
 			this.button[1].setText("Pesca");
 			this.button[2].setVisible(true);
 			this.button[2].setText("Stai");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
+			this.setInvisiblechips();
 			break;
 		case dealerTurn:
 			this.resetGame();
 			this.setScore(scorePlayer, scoreDealer);;
 			this.setImage(playerHand,dealerHand);
+			this.setInvisiblechips();
 			break;
 		case drow:	
 			this.resetGame();
@@ -299,6 +327,7 @@ public class GameView extends JPanel {
 			this.messageText.setText("pareggio");
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
+			this.setInvisiblechips();
 			break;
 		case broke:
 			this.resetGame();
@@ -322,11 +351,9 @@ public class GameView extends JPanel {
 			this.messageText.setText("non puoi puntare piu di quello che hai");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
 			this.bet.setText(String.valueOf("Puntata:"+bet));
-			for(int i =0; i<3; i++) {
-				this.buttonChip[i].setEnabled(false);
-			}
+			this.setInvisiblechips();
 			
 			break;
 		default:
@@ -336,19 +363,48 @@ public class GameView extends JPanel {
 			this.messageText.setText("Fai la tua puntatata");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
+			this.setBalance(balance);
 			this.bet.setText(String.valueOf("Puntata:"+bet));
-			for(int i =0; i<3; i++) {
-				this.buttonChip[i].setEnabled(true);
-			}
+			this.setVisibleChip();
 			break;
 			
 		}
 	}
+	/**
+	 * 
+	 * @param balance
+	 */
+	private void setBalance(int balance) {
+		this.balance.setText("Saldo:"+String.valueOf(balance));
+	}
+	/**
+	 * 
+	 */
+	private void setInvisiblechips() {
+		for(int i =0; i<NCHIPS; i++) {
+			this.buttonChip[i].setEnabled(false);
+		}
+	}
+	/**
+	 * 
+	 */
+	private void setVisibleChip() {
+		for(int i =0; i<NCHIPS; i++) {
+			this.buttonChip[i].setEnabled(true);
+		}
+	}
+	/**
+	 * Method for set the Score
+	 * @param scorePlayer
+	 * @param scoreDealer
+	 */
 	private void setScore(int scorePlayer,int scoreDealer) {
 		this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 		this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 	}
+	/**
+	 * to reset buttons and label of the card
+	 */
 	private void resetGame() {
 
 		for(int i = 0; i < NBUTTONS; i++) {

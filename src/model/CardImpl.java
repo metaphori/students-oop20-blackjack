@@ -1,10 +1,18 @@
 package model;
-
+/**
+ * 
+ * @author 
+ *
+ */
 public class CardImpl implements Card {
 	
 	private Suit suit;
 	private Values values;
-	
+	/**
+	 * 
+	 * @param suit
+	 * @param values
+	 */
 	public CardImpl(Suit suit,Values values) {
 		this.suit = suit;
 		this.values = values;

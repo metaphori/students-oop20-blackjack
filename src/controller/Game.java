@@ -4,7 +4,11 @@ import model.Chip;
 import model.State;
 import utility.ActionHandler;
 import view.View;
-
+/**
+ * 
+ * @author
+ *
+ */
 public interface Game {
 
 	void setView(View view);

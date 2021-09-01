@@ -9,7 +9,11 @@ import javax.swing.ImageIcon;
 import model.CardImpl;
 import model.Suit;
 import model.Values;
-
+/**
+ * this method reload the image
+ * @author bon98
+ *
+ */
 public class ImageLoader {
 	
 	private static final ImageLoader IMAGE = new ImageLoader();
@@ -23,7 +27,9 @@ public class ImageLoader {
 	private final Map<CardImpl,ImageIcon> diamonds = new HashMap<>();
 	private final Map<CardImpl,ImageIcon> clubs = new HashMap<>();
 	private final Map<CardImpl,ImageIcon> hearts = new HashMap<>();
-	
+	/**
+	 * put the images in each map or ImageIcon
+	 */
 	public void findImages() {
 		URL imgURL = ImageLoader.class.getResource("/back.png");
 		this.front = loadImage(imgURL);
@@ -53,30 +59,67 @@ public class ImageLoader {
 			this.hearts.put(new CardImpl(Suit.heart,Values.getValue(i)),loadImage(imgURL));
 		}
 	}
+	/**
+	 * 
+	 * @param url
+	 * @return
+	 */
 	private ImageIcon loadImage(final URL url){
         return new ImageIcon(url);
     }
+	/**
+	 * 
+	 * @return
+	 */
 	public Map<CardImpl,ImageIcon> getSpades(){
 		return this.spades;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public ImageIcon getMenuImage() {
 		return this.menu;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public ImageIcon[] getChipImage() {
 		return this.chip;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public Map<CardImpl,ImageIcon> getHeart(){
 		return this.hearts;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public Map<CardImpl,ImageIcon> getClubs(){
 		return this.clubs;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public Map<CardImpl,ImageIcon> getDiamonds(){
 		return this.diamonds;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public ImageIcon getFront() {
 		return this.front;
 	}
+	/**
+	 * 
+	 * @return
+	 */
 	public static ImageLoader getImageLoader() {
         return ImageLoader.IMAGE;
     }

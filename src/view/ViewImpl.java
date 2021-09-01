@@ -1,24 +1,22 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import controller.Game;
-import controller.GameImpl;
 import model.CardImpl;
 import model.State;
 import utility.ImageLoader;
-
+/**
+ * 
+ * 
+ *
+ */
 public class ViewImpl extends JFrame implements View {
 	
 	/**
@@ -31,7 +29,11 @@ public class ViewImpl extends JFrame implements View {
 	Game game;
 	GameView gameV;
 	ImageLoader image;
-	
+	/**
+	 * 
+	 * @param game
+	 * @param image
+	 */
 	public ViewImpl(Game game,ImageLoader image) {
 		
 		super();
@@ -51,7 +53,10 @@ public class ViewImpl extends JFrame implements View {
 	}
 
 
-
+/**
+ * 
+ * @return
+ */
 	private int chooseWidthDimension() {
 		int width = SCREEN_WIDTH;
 		if(width<=1280) {
@@ -59,7 +64,10 @@ public class ViewImpl extends JFrame implements View {
 		}
 		 return(width/(3)*2);
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	private int chooseHeightDimension() {
 		int height = SCREEN_HEIGHT;
 		if(height<=720) {

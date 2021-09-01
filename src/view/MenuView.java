@@ -7,21 +7,18 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.Game;
 import utility.ImageLoader;
-
+/**
+ * 
+ * @author bon98
+ *
+ */
 public class MenuView extends JPanel{
 
 	/**
@@ -35,7 +32,13 @@ public class MenuView extends JPanel{
 	private final View view;
 	private GameView gameV;
 	private ImageLoader image;
-	
+	/**
+	 * 
+	 * @param view
+	 * @param game
+	 * @param gameV
+	 * @param images
+	 */
 	public MenuView(final View view, Game game,GameView gameV,ImageLoader images) {
 
 		super();

@@ -5,10 +5,18 @@ import controller.Game;
 import controller.GameImpl;
 import view.View;
 import view.ViewImpl;
+/**
+ * 
+ * 
+ *
+ */
 
 public class Main {
 
-
+/**
+ * 
+ * @param args
+ */
     public static void main(final String[] args) {
         //new Game();
     	

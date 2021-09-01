@@ -1,5 +1,9 @@
 package model;
-
+/**
+ * 
+ * @author
+ *
+ */
 public enum Suit {
 	spades(0),clubs(1),diamods(2),heart(3);
 
@@ -9,11 +13,18 @@ public enum Suit {
 		// TODO Auto-generated constructor stub
 		this.value = value;
 	}
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int getvalue() {
 		return this.value;
 	}
-	
+	/**
+	 * 
+	 * @param suitvalue
+	 * @return
+	 */
 	public Suit getSuit(int suitvalue) {
 		switch (suitvalue) {
 		case 0:

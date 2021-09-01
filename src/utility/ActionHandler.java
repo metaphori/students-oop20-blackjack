@@ -9,8 +9,6 @@ import controller.Game;
 import controller.PlayerDraw;
 import controller.PlayerTurn;
 import model.Chip;
-import view.MenuView;
-import view.View;
 
 public class ActionHandler implements ActionListener{
 
@@ -21,7 +19,14 @@ public class ActionHandler implements ActionListener{
 	private PlayerDraw playerDraw;
 	private DealerDraw dealerDraw;
 
-	
+	/**
+	 * 
+	 * @param game
+	 * @param dealerDraw
+	 * @param playerDraw
+	 * @param dealerTurn
+	 * @param playerTurn
+	 */
 	public ActionHandler(Game game, DealerDraw dealerDraw, PlayerDraw playerDraw, DealerTurn dealerTurn, PlayerTurn playerTurn) {
 		// TODO Auto-generated constructor stub
 		this.game = game;
@@ -30,6 +35,7 @@ public class ActionHandler implements ActionListener{
 		this.dealerTurn = dealerTurn;
 		this.dealerDraw = dealerDraw;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
