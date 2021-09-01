@@ -33,7 +33,6 @@ public class MenuView extends JPanel{
 	private JButton start,exit;
 	private JLabel title,label;
 	private final View view;
-	private Game game;
 	private GameView gameV;
 	private ImageLoader image;
 	
@@ -42,7 +41,6 @@ public class MenuView extends JPanel{
 		super();
 		this.gameV = gameV;
 		this.image = images;
-		this.game = game;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));

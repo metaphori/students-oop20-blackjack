@@ -20,12 +20,8 @@ import utility.ImageLoader;
 
 public class GameView extends JPanel {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
     private View view;
-    private JLabel title;
     private JPanel table,dealerPanel,playerPanel;
     private JLabel playerCardLabel[] = new JLabel[6];
     private JLabel dealerCardLabel[] = new JLabel[6];
@@ -40,6 +36,10 @@ public class GameView extends JPanel {
 	private Game game;
 	private JPanel chips;
 	private JLabel balance, bet;
+    private final static int NCARD = 6;
+    private final static int NBUTTONS = 6;
+    private final static int NCHIPS = 3; 
+    
     
 	public GameView(View view,Game game,ImageLoader image) {
 		super();
@@ -70,13 +70,13 @@ public class GameView extends JPanel {
 		playerPanel.setVisible(true);
 		this.add(playerPanel);
 
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < NCARD; i++) {
 			playerCardLabel[i] = new JLabel();
 			playerCardLabel[i].setVisible(true);
 			playerPanel.add(playerCardLabel[i]);
 		}
 		
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < NCARD; i++) {
 			dealerCardLabel[i] = new JLabel();
 			dealerCardLabel[i].setVisible(true);
 			dealerPanel.add(dealerCardLabel[i]);
@@ -106,7 +106,7 @@ public class GameView extends JPanel {
 		messageText.setForeground(Color.white);
 		messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
 		messageText.setEditable(false);
-		messageText.setText("Fai la tua puntatata ------------>");
+		messageText.setText("Fai la tua puntatata");
 		messageText.setOpaque(false);
 		this.add(messageText);
 		
@@ -117,7 +117,7 @@ public class GameView extends JPanel {
 		buttonPanel.setOpaque(false);
 		this.add(buttonPanel);
 		
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < NBUTTONS; i++) {
 			button[i] = new JButton();
 			button[i].setBackground(null);
 			button[i].setForeground(Color.white);
@@ -130,13 +130,11 @@ public class GameView extends JPanel {
 			buttonPanel.add(button[i]);
 		}
 		
-		
-		
 		this.chips = new JPanel();
 		this.chips.setLayout(new GridLayout(2,2));
 		this.chips.setBounds(850,400,400,270);
 		this.chips.setBackground(new Color(0,81,0));
-		for(int i = 0; i < 3; i++) {
+		for(int i = 0; i < NCHIPS; i++) {
 			buttonChip[i] = new JButton();
 			buttonChip[i].setVisible(true);
 			buttonChip[i].setBackground(new Color(0,81,0));
@@ -162,8 +160,8 @@ public class GameView extends JPanel {
 		
 		this.add(this.chips);
 	}
+	//set Card covers
 	private void setTable() {
-		//set Card
 		for(int i = 1;i<3;i++) {
 			playerCardLabel[i].setIcon(this.image.getFront());
 			playerCardLabel[i].setVisible(true);
@@ -171,7 +169,8 @@ public class GameView extends JPanel {
 			dealerCardLabel[i].setVisible(true);
 		}
 	}
-	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
+	private void setImage(List<Card> playerHand,List<Card> dealerHand) {
+
 		int cont =0;
 		for(Card c : playerHand) {
 			cont++;
@@ -243,12 +242,12 @@ public class GameView extends JPanel {
 			}
 		}
 	}
+	//Set Table for each game Status
 	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
 		switch(state) {
 		case win:
 			this.resetGame();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setScore(scorePlayer, scoreDealer);
 			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
@@ -257,9 +256,7 @@ public class GameView extends JPanel {
 			break;
 		case lose:
 			this.resetGame();
-			
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setScore(scorePlayer, scoreDealer);
 			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
@@ -268,8 +265,7 @@ public class GameView extends JPanel {
 			break;
 		case natural:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setScore(scorePlayer, scoreDealer);
 			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
@@ -291,27 +287,23 @@ public class GameView extends JPanel {
 			break;
 		case dealerTurn:
 			this.resetGame();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setScore(scorePlayer, scoreDealer);;
 			this.setImage(playerHand,dealerHand);
 			break;
 		case drow:	
 			this.resetGame();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+			this.setScore(scorePlayer, scoreDealer);
 			this.setImage(playerHand,dealerHand);
 			this.messageText.setText("pareggio");
 			this.button[0].setVisible(true);
 			this.button[0].setText("Rigioca");
-			this.balance.setText("Saldo:"+String.valueOf(balance));
 			break;
 		case broke:
 			this.resetGame();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: ?");
+			this.setScore(scorePlayer, scoreDealer);
 			this.setImage(playerHand,dealerHand);
 			this.messageText.setText("Hai Perso!");		
-		
+
 			int n = JOptionPane.showConfirmDialog(null, "Saldo esaurito, vuoi rigiocare?", "ATTENZIONE",
 			JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 			if(n == JOptionPane.YES_OPTION) {
@@ -324,9 +316,8 @@ public class GameView extends JPanel {
 		case nobet:
 			this.resetGame();
 			this.setTable();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
-			messageText.setText("non puoi puntare piu di quello che hai");
+			this.setScore(scorePlayer, scoreDealer);
+			this.messageText.setText("non puoi puntare piu di quello che hai");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
 			this.balance.setText("Saldo:"+String.valueOf(balance));
@@ -339,9 +330,8 @@ public class GameView extends JPanel {
 		default:
 			this.resetGame();
 			this.setTable();
-			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: ?");
-			messageText.setText("Fai la tua puntatata");
+			this.setScore(scorePlayer, scoreDealer);
+			this.messageText.setText("Fai la tua puntatata");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
 			this.balance.setText("Saldo:"+String.valueOf(balance));
@@ -353,12 +343,16 @@ public class GameView extends JPanel {
 			
 		}
 	}
+	private void setScore(int scorePlayer,int scoreDealer) {
+		this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
+		this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
+	}
 	private void resetGame() {
 
-		for(int i = 0; i < 6; i++) {
+		for(int i = 0; i < NBUTTONS; i++) {
 			this.button[i].setVisible(false);
 		}
-		for(int j = 1; j < 6; j++) {
+		for(int j = 1; j < NCARD; j++) {
 			this.playerCardLabel[j].setVisible(false);
 			this.dealerCardLabel[j].setVisible(false);
 		}
