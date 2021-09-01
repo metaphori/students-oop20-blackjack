@@ -19,13 +19,19 @@ public class ImageLoader {
 	private static final ImageLoader IMAGE = new ImageLoader();
 	private static final int NCard = 15;
 	private static final int NCHIPS = 3;
+	/*The front image*/
 	private ImageIcon front = new ImageIcon();
+	/*The menu image*/
 	private ImageIcon menu = new ImageIcon();
+	/*The chips images*/
 	private ImageIcon chip[] = new ImageIcon[3];
-	
+	/*The Spades images*/
 	private final Map<CardImpl,ImageIcon> spades = new HashMap<>();
+	/*The diamonds images*/
 	private final Map<CardImpl,ImageIcon> diamonds = new HashMap<>();
+	/*The clubs images*/
 	private final Map<CardImpl,ImageIcon> clubs = new HashMap<>();
+	/*The hearts images*/
 	private final Map<CardImpl,ImageIcon> hearts = new HashMap<>();
 	/**
 	 * put the images in each map or ImageIcon
@@ -69,56 +75,56 @@ public class ImageLoader {
     }
 	/**
 	 * 
-	 * @return
+	 * @return Map of Spades
 	 */
 	public Map<CardImpl,ImageIcon> getSpades(){
 		return this.spades;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return imageIcon of menu
 	 */
 	public ImageIcon getMenuImage() {
 		return this.menu;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return ImageIcons of chips
 	 */
 	public ImageIcon[] getChipImage() {
 		return this.chip;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return Map of heart
 	 */
 	public Map<CardImpl,ImageIcon> getHeart(){
 		return this.hearts;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return map of clubs
 	 */
 	public Map<CardImpl,ImageIcon> getClubs(){
 		return this.clubs;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return map of diamonds
 	 */
 	public Map<CardImpl,ImageIcon> getDiamonds(){
 		return this.diamonds;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return ImageIcon of back Card
 	 */
 	public ImageIcon getFront() {
 		return this.front;
 	}
 	/**
 	 * 
-	 * @return
+	 * @return imageLoader
 	 */
 	public static ImageLoader getImageLoader() {
         return ImageLoader.IMAGE;

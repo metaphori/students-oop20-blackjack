@@ -18,24 +18,31 @@ import model.State;
 import model.Suit;
 import utility.ImageLoader;
 /**
+ * JPanel for the game
+ * @author Alberto_Rossi
  * 
- * @author
- *
  */
 public class GameView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
+	//JPanel for the table game
     private JPanel table,dealerPanel,playerPanel;
+    //JLabel for player and dealer
     private JLabel playerCardLabel[] = new JLabel[6];
     private JLabel dealerCardLabel[] = new JLabel[6];
+    //JLabel for Score
 	private JLabel playerScore, dealerScore;
     private ImageLoader image;
+    //JTextArea for game message
     private JTextArea messageText;
+    //JPanel for the buttons
     private JPanel buttonPanel = new JPanel();
     private JButton button[] = new JButton[6];
-	private JButton buttonChip[] = new JButton[4];
-	private int cardWidth = 150;
-	private int cardHeight = 213;
+    //Button for the chips
+	private JButton buttonChip[] = new JButton[NCHIPS];
+	//dimension of the card
+	private static final int CARDWIDTH= 150;
+	private static final int CARDHEIGHT= 213;
 	private Game game;
 	private JPanel chips;
 	private JLabel balance, bet;
@@ -44,7 +51,7 @@ public class GameView extends JPanel {
     private final static int NCHIPS = 3; 
     
     /**
-     * 
+     * View of the game
      * @param view
      * @param game
      * @param image
@@ -63,7 +70,7 @@ public class GameView extends JPanel {
 		
 		
 		dealerPanel = new JPanel();
-		dealerPanel.setBounds(55,70,cardWidth*5,cardHeight);
+		dealerPanel.setBounds(55,70,CARDWIDTH*5,CARDHEIGHT);
 		dealerPanel.setBackground(null);
 		dealerPanel.setOpaque(false);
 		dealerPanel.setLayout(new GridLayout(1,5));
@@ -71,7 +78,7 @@ public class GameView extends JPanel {
 		this.add(dealerPanel);
 				
 		playerPanel = new JPanel();
-		playerPanel.setBounds(55,300,cardWidth*5,cardHeight);
+		playerPanel.setBounds(55,300,CARDWIDTH*5,CARDHEIGHT);
 		playerPanel.setOpaque(false);
 		playerPanel.setLayout(new GridLayout(1,5));
 		playerPanel.setVisible(true);
@@ -180,7 +187,7 @@ public class GameView extends JPanel {
 		}
 	}
 	/**
-	 * 
+	 * Search image for draw the card
 	 * @param playerHand
 	 * @param dealerHand
 	 */
@@ -371,14 +378,14 @@ public class GameView extends JPanel {
 		}
 	}
 	/**
-	 * 
+	 * set the JLabel of the balance
 	 * @param balance
 	 */
 	private void setBalance(int balance) {
 		this.balance.setText("Saldo:"+String.valueOf(balance));
 	}
 	/**
-	 * 
+	 * set invisible the chips
 	 */
 	private void setInvisiblechips() {
 		for(int i =0; i<NCHIPS; i++) {
@@ -386,7 +393,7 @@ public class GameView extends JPanel {
 		}
 	}
 	/**
-	 * 
+	 * method for set visible the chips
 	 */
 	private void setVisibleChip() {
 		for(int i =0; i<NCHIPS; i++) {
