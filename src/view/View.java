@@ -1,9 +1,6 @@
 package view;
 
 import java.util.List;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.Card;
@@ -15,7 +12,6 @@ public interface View {
 	
 	void switchPanel(JPanel windows);
 	
-	void resetToMenu();
 	
 	
 }

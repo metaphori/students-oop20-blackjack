@@ -30,12 +30,12 @@ public class MenuView extends JPanel{
 	private static final long serialVersionUID = 1L;
 	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
 	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-	JButton start,exit;
-	JLabel title,label;
+	private JButton start,exit;
+	private JLabel title,label;
 	private final View view;
 	private Game game;
 	private GameView gameV;
-	ImageLoader image;
+	private ImageLoader image;
 	
 	public MenuView(final View view, Game game,GameView gameV,ImageLoader images) {
 
@@ -45,9 +45,6 @@ public class MenuView extends JPanel{
 		this.game = game;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		//this.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setOpaque(false);
 		
@@ -63,13 +60,11 @@ public class MenuView extends JPanel{
 	    
 		this.start = new JButton("START");
 		this.start.setBounds(500,750,200,50);
-		//this.start.setBorder(null);
 		this.start.setBackground(null);
 		this.start.setFocusPainted(false);
 		this.start.setForeground(Color.white);
 		this.start.setFont(new Font("Book Antiqua", Font.PLAIN,36));
 		this.start.setVisible(true);
-		//this.start.addActionListener(game.aHandler);
 		this.start.setActionCommand("start");
 		this.start.setContentAreaFilled(false);
 		this.start.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -86,13 +81,11 @@ public class MenuView extends JPanel{
 		
 		this.exit = new JButton("EXIT");
 		this.exit.setBounds(500,750,200,50);
-		//this.exit.setBorder(null);
 		this.exit.setBackground(null);
 		this.exit.setFocusPainted(false);
 		this.exit.setForeground(Color.white);
 		this.exit.setFont(new Font("Book Antiqua", Font.PLAIN,36));
 		this.exit.setVisible(true);
-		//this.exit.addActionListener(game.aHandler);
 		this.exit.setActionCommand("exit");
 		this.exit.setContentAreaFilled(false);
 		this.exit.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -110,6 +103,5 @@ public class MenuView extends JPanel{
 	}
 	void newPlay() {
 		this.view.switchPanel(gameV);
-		//this.game.newGame();
 	}
 }
