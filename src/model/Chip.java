@@ -4,10 +4,11 @@ public enum Chip {
 	twenty(20),
 	fifty(50),
 	hundred(100);
+	
 	private int chip;
 	
 	Chip(int i) {
-		this.chip = i;
+		this.setChip(i);
 	}
 	
 	public static int getChipValue(Chip chip) {
@@ -21,6 +22,14 @@ public enum Chip {
 		default:
 			return 0;
 		}
+	}
+
+	public int getChip() {
+		return chip;
+	}
+
+	public void setChip(int chip) {
+		this.chip = chip;
 	}
 	
 }
