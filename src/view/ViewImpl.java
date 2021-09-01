@@ -14,7 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import controller.Game;
-import model.Card;
+import controller.GameImpl;
+import model.CardImpl;
 import model.State;
 import utility.ImageLoader;
 
@@ -31,7 +32,7 @@ public class ViewImpl extends JFrame implements View {
 	GameView gameV;
 	ImageLoader image;
 	
-	public ViewImpl(Game game,ImageLoader image) {
+	public ViewImpl(GameImpl game,ImageLoader image) {
 		
 		super();
 		this.image = image;
@@ -80,7 +81,7 @@ public class ViewImpl extends JFrame implements View {
 
 
 	@Override
-	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
+	public void draw(int scoreDealer, int scorePlayer, List<CardImpl> playerHand, List<CardImpl> dealerHand, State state, int balance, int bet) {
 		this.gameV.render(scoreDealer, scorePlayer, playerHand, dealerHand, state, balance, bet);
 	}
 

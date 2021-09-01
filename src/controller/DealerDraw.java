@@ -2,24 +2,31 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.Card;
+import model.CardImpl;
 import model.Values;
 
 
-public class DealerDraw {
+public class DealerDraw implements Draw{
 	
-	private List<Card> dealerHand  = new ArrayList<Card>();
+	private final static int ACE_VALUE = 11;
+	private final static int MAX_DEALER_HAND_SIZE = 6;
+	private List<CardImpl> dealerHand  = new ArrayList<CardImpl>();
 	private int pointdealer;
 	private PickCard pickCard = new PickCard();
 	
-	public DealerDraw() {}
+	public DealerDraw() {
+		
+	}
 	
+	@Override
 	public void DrawCard() {
-		Card card = pickCard.pickedCard();
-		if(card.getValues() == Values.one && getPointDealer()+11 < 22) {
+		CardImpl card = pickCard.pickedCard();
+		if(card.getValues() == Values.one && getPointDealer()+ ACE_VALUE < 22) {
 			card.setAceOrNot(Values.getValue(14));
 			this.dealerHand.add(card);
-		}else if(card.getValues() == Values.one && getPointDealer()+11 > 22 && this.dealerHand.size() < 6) {
+		}else if(card.getValues() == Values.one && getPointDealer()+ ACE_VALUE > 22 && this.dealerHand.size() < MAX_DEALER_HAND_SIZE) {
 			card.setAceOrNot(Values.getValue(1));	
 			this.dealerHand.add(card);
 			this.setNoAce();
@@ -31,7 +38,7 @@ public class DealerDraw {
 		}
 	}
 	
-	public List<Card> getDealerHand(){
+	public List<CardImpl> getDealerHand(){
 		return this.dealerHand;
 	}
 	
@@ -51,22 +58,16 @@ public class DealerDraw {
 		return this.pointdealer;
 	}
 	
-	private void setNoAce() {
-		List<Card> playerHandtemp = new ArrayList<Card>();
-		int countace = 1;
-		for(Card carta: this.dealerHand) {
-			if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
-				carta.setAceOrNot(Values.getValue(1));
-				playerHandtemp.add(carta);
-				countace++;
-			}else {
-				playerHandtemp.add(carta);
+	@Override
+	public void setNoAce() {	
+		for(int i=0;i<this.dealerHand.size();i++) {
+			if(this.dealerHand.get(i).getValues().getV() == ACE_VALUE) {
+				this.dealerHand.get(i).setAceOrNot(Values.one);
+				if(this.getPointDealer() < 21) {
+					break;
+				}
 			}
-			countace++;
-		}
-		this.dealerHand.clear();
-		this.dealerHand = playerHandtemp;
-		
+		}	
 	}
 
 	

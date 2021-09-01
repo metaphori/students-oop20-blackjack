@@ -10,5 +10,4 @@ public enum State {
 	bet,
 	broke,
 	nobet;
-	//reset?
 }

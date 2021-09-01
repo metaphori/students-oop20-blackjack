@@ -4,35 +4,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Card;
+import model.CardImpl;
 import model.Values;
 
-public class PlayerDraw {
+public class PlayerDraw implements Draw{
 
-	private List<Card> playerHand = new ArrayList<Card>();
+	private final static int ACE_VALUE = 11;
+	private List<CardImpl> playerHand = new ArrayList<CardImpl>();
 	private int pointplayer;
+	
 	private PickCard pickCard = new PickCard();
 	
-	public PlayerDraw() {}
-
+	public PlayerDraw() {
+		
+	}
+ 
+	@Override
 	public void DrawCard() {
-		Card card = pickCard.pickedCard();
-		if(card.getValues() == Values.one && getPointPlayer()+11 < 22) {
+		CardImpl card = pickCard.pickedCard();
+		if(card.getValues() == Values.one && getPointPlayer()+ ACE_VALUE < 22) {
 			card.setAceOrNot(Values.getValue(14));
-//			this.playerHand.add(card);
 		}
-//		else if(card.getValues() == Values.one && getPointPlayer()+11 > 21 && this.playerHand.size() < 6) {
-//			card.setAceOrNot(Values.getValue(1));	
-//			this.playerHand.add(card);
-////			this.setNoAce();
-//		}else{
-			this.playerHand.add(card);
-			if(getPointPlayer() > 21) {
-				this.setNoAce();
-			}
-//		}	
+
+		this.playerHand.add(card);
+		if(getPointPlayer() > 21) {
+			this.setNoAce();
+		}
+	
 	}
 	
-	public List<Card> getPlayerHand(){
+	public List<CardImpl> getPlayerHand(){
 		return this.playerHand;
 	}
 	
@@ -53,24 +54,10 @@ public class PlayerDraw {
 		return this.pointplayer;
 	}
 	
-	private void setNoAce() {
-//		List<Card> playerHandtemp = new ArrayList<Card>();
-//		int countace = 1;
-//		for(Card carta: this.playerHand) {
-//				if(carta.getValues() == Values.ace && countace == 3 || countace == 5) {
-//				carta.setAceOrNot(Values.getValue(1));
-//				playerHandtemp.add(carta);
-//				countace++;
-//			}else {
-//				playerHandtemp.add(carta);
-//			}
-//			countace++;
-//		}
-//		this.playerHand.clear();
-//		this.playerHand = playerHandtemp;
-
+	@Override
+	public void setNoAce() {
 		for(int i=0;i<this.playerHand.size();i++) {
-			if(playerHand.get(i).getValues().getV() == 11) {
+			if(playerHand.get(i).getValues().getV() == ACE_VALUE) {
 				playerHand.get(i).setAceOrNot(Values.one);
 				if(this.getPointPlayer() < 21) {
 					break;

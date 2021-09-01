@@ -14,6 +14,7 @@ import view.View;
 
 public class ActionHandler implements ActionListener{
 
+	private final static int MAX_CARD_HAND = 5;
 	private Game game;
 	private PlayerTurn playerTurn;
 	private DealerTurn dealerTurn;
@@ -36,7 +37,7 @@ public class ActionHandler implements ActionListener{
 		
 		switch (command) {
 		case "1"://pesca
-				if(this.playerDraw.getPlayerHand().size() < 5) {
+				if(this.playerDraw.getPlayerHand().size() < MAX_CARD_HAND) {
 					this.playerTurn.newTurnPlayer(this.playerDraw,this.game);
 				}else {
 					this.dealerTurn.newTurnDealer(this.dealerDraw,this.game);
@@ -62,19 +63,18 @@ public class ActionHandler implements ActionListener{
 				this.game.setBet(Chip.twenty);
 			}
  			
-			//this.game.setBalanceAfterBet();
+
 			break;
 		case "chips1"://bet50
 			if(this.game.checkbet(Chip.fifty)) {
 				this.game.setBet(Chip.fifty);
 			}
-			//this.game.setBalanceAfterBet();
+
 			break;
 		case "chips2"://bet100
 			if(this.game.checkbet(Chip.hundred)) {
 				this.game.setBet(Chip.hundred);
 			}
-			//this.game.setBalanceAfterBet();
 			break;
 		}
 	}

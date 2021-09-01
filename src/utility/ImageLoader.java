@@ -6,7 +6,7 @@ import java.util.Map;
 
 import javax.swing.ImageIcon;
 
-import model.Card;
+import model.CardImpl;
 import model.Suit;
 import model.Values;
 
@@ -19,10 +19,10 @@ public class ImageLoader {
 	private ImageIcon menu = new ImageIcon();
 	private ImageIcon chip[] = new ImageIcon[3];
 	
-	private final Map<Card,ImageIcon> spades = new HashMap<>();
-	private final Map<Card,ImageIcon> diamonds = new HashMap<>();
-	private final Map<Card,ImageIcon> clubs = new HashMap<>();
-	private final Map<Card,ImageIcon> hearts = new HashMap<>();
+	private final Map<CardImpl,ImageIcon> spades = new HashMap<>();
+	private final Map<CardImpl,ImageIcon> diamonds = new HashMap<>();
+	private final Map<CardImpl,ImageIcon> clubs = new HashMap<>();
+	private final Map<CardImpl,ImageIcon> hearts = new HashMap<>();
 	
 	public void findImages() {
 		URL imgURL = ImageLoader.class.getResource("/back.png");
@@ -38,25 +38,25 @@ public class ImageLoader {
 		
 		for(int i = 1; i<NCard;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_spades.png");
-			this.spades.put(new Card(Suit.spades,Values.getValue(i)),loadImage(imgURL));
+			this.spades.put(new CardImpl(Suit.spades,Values.getValue(i)),loadImage(imgURL));
 		}
 		for(int i = 1; i<NCard;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_diamonds.png");
-			this.diamonds.put(new Card(Suit.diamods,Values.getValue(i)),loadImage(imgURL));
+			this.diamonds.put(new CardImpl(Suit.diamods,Values.getValue(i)),loadImage(imgURL));
 		}
 		for(int i = 1; i<NCard;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_plub.png");
-			this.clubs.put(new Card(Suit.clubs,Values.getValue(i)),loadImage(imgURL));
+			this.clubs.put(new CardImpl(Suit.clubs,Values.getValue(i)),loadImage(imgURL));
 		}
 		for(int i = 1; i<NCard;i++) {
 			imgURL = ImageLoader.class.getResource("/"+i+"_heart.png");
-			this.hearts.put(new Card(Suit.heart,Values.getValue(i)),loadImage(imgURL));
+			this.hearts.put(new CardImpl(Suit.heart,Values.getValue(i)),loadImage(imgURL));
 		}
 	}
 	private ImageIcon loadImage(final URL url){
         return new ImageIcon(url);
     }
-	public Map<Card,ImageIcon> getSpades(){
+	public Map<CardImpl,ImageIcon> getSpades(){
 		return this.spades;
 	}
 	public ImageIcon getMenuImage() {
@@ -65,13 +65,13 @@ public class ImageLoader {
 	public ImageIcon[] getChipImage() {
 		return this.chip;
 	}
-	public Map<Card,ImageIcon> getHeart(){
+	public Map<CardImpl,ImageIcon> getHeart(){
 		return this.hearts;
 	}
-	public Map<Card,ImageIcon> getClubs(){
+	public Map<CardImpl,ImageIcon> getClubs(){
 		return this.clubs;
 	}
-	public Map<Card,ImageIcon> getDiamonds(){
+	public Map<CardImpl,ImageIcon> getDiamonds(){
 		return this.diamonds;
 	}
 	public ImageIcon getFront() {

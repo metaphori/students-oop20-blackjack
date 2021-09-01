@@ -1,27 +1,11 @@
 package model;
 
-public class Card {
-	
-	private Suit suit;
-	private Values values;
-	
-	public Card(Suit suit,Values values) {
-		this.suit = suit;
-		this.values = values;
-	}
+public interface Card {
 
-	public Suit getSuit() {
-		return suit;
-	}
+	Suit getSuit();
 
-	public Values getValues() {
-		return values;
-	}
-	
-	public void setAceOrNot(Values values) {
-		this.values = values;
-	}
-	
-	
+	Values getValues();
+
+	void setAceOrNot(Values values);
 
 }

@@ -13,7 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 import controller.Game;
+import controller.GameImpl;
 import model.Card;
+import model.CardImpl;
 import model.State;
 import model.Suit;
 import utility.ImageLoader;
@@ -41,7 +43,7 @@ public class GameView extends JPanel {
     private final static int NCHIPS = 3; 
     
     
-	public GameView(View view,Game game,ImageLoader image) {
+	public GameView(View view,GameImpl game,ImageLoader image) {
 		super();
 		this.game = game;
 		this.image = image;
@@ -169,7 +171,7 @@ public class GameView extends JPanel {
 			dealerCardLabel[i].setVisible(true);
 		}
 	}
-	private void setImage(List<Card> playerHand,List<Card> dealerHand) {
+	private void setImage(List<CardImpl> playerHand,List<CardImpl> dealerHand) {
 
 		int cont =0;
 		for(Card c : playerHand) {
@@ -243,7 +245,7 @@ public class GameView extends JPanel {
 		}
 	}
 	//Set Table for each game Status
-	public void render(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
+	public void render(int scoreDealer, int scorePlayer, List<CardImpl> playerHand, List<CardImpl> dealerHand, State state, int balance, int bet) {
 		switch(state) {
 		case win:
 			this.resetGame();
