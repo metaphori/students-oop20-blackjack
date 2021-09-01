@@ -2,21 +2,10 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.List;
-
-import javax.swing.BoxLayout;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,9 +16,7 @@ import controller.Game;
 import model.Card;
 import model.State;
 import model.Suit;
-import model.Values;
 import utility.ImageLoader;
-import utility.RoundedBorder;
 
 public class GameView extends JPanel {
 	
@@ -37,31 +24,28 @@ public class GameView extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
     private View view;
-    JLabel title;
-    JPanel table,dealerPanel,playerPanel;
-    JLabel playerCardLabel[] = new JLabel[6];
-	JLabel dealerCardLabel[] = new JLabel[6];
-    JLabel playerScore, dealerScore;
-    ImageLoader image;
-    JTextArea messageText;
-    JPanel buttonPanel = new JPanel();
-	JButton button[] = new JButton[6];
-	JButton buttonChip[] = new JButton[4];
-	int cardWidth = 150;
-	int cardHeight = 213;
+    private JLabel title;
+    private JPanel table,dealerPanel,playerPanel;
+    private JLabel playerCardLabel[] = new JLabel[6];
+    private JLabel dealerCardLabel[] = new JLabel[6];
+	private JLabel playerScore, dealerScore;
+    private ImageLoader image;
+    private JTextArea messageText;
+    private JPanel buttonPanel = new JPanel();
+    private JButton button[] = new JButton[6];
+	private JButton buttonChip[] = new JButton[4];
+	private int cardWidth = 150;
+	private int cardHeight = 213;
 	private Game game;
-	JPanel chips;
-	JLabel balance, bet;
+	private JPanel chips;
+	private JLabel balance, bet;
     
 	public GameView(View view,Game game,ImageLoader image) {
 		super();
 		this.game = game;
 		this.image = image;
 		this.view = view;
-		//this.setPreferredSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));;
 		this.setOpaque(false);
 		this.setLayout(null);
 		table = new JPanel();
@@ -89,16 +73,15 @@ public class GameView extends JPanel {
 		for(int i = 1; i < 6; i++) {
 			playerCardLabel[i] = new JLabel();
 			playerCardLabel[i].setVisible(true);
-			playerCardLabel[i].setIcon(this.image.getFront());
 			playerPanel.add(playerCardLabel[i]);
 		}
 		
 		for(int i = 1; i < 6; i++) {
 			dealerCardLabel[i] = new JLabel();
 			dealerCardLabel[i].setVisible(true);
-			dealerCardLabel[i].setIcon(this.image.getFront());
 			dealerPanel.add(dealerCardLabel[i]);
 		}	
+		this.setTable();
 		
 		dealerScore = new JLabel();
 		dealerScore.setBounds(50,5,200,30);
@@ -112,7 +95,7 @@ public class GameView extends JPanel {
 		playerScore.setBounds(50,490,200,30);
 		playerScore.setForeground(Color.white);
 		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		playerScore.setText("You : 0");
+		playerScore.setText("Giocatore : 0");
 		table.add(playerScore);
 	
 		this.add(table,BorderLayout.CENTER);
@@ -139,7 +122,6 @@ public class GameView extends JPanel {
 			button[i].setBackground(null);
 			button[i].setForeground(Color.white);
 			button[i].setFocusPainted(false);
-			//button[i].setBorder(null);
 			button[i].setContentAreaFilled(false);
 			button[i].setFont(new Font("Times New Roman", Font.PLAIN, 42));
 			button[i].addActionListener(game.actionHandler);
@@ -147,7 +129,6 @@ public class GameView extends JPanel {
 			button[i].setVisible(false);
 			buttonPanel.add(button[i]);
 		}
-		
 		
 		
 		
@@ -166,7 +147,6 @@ public class GameView extends JPanel {
 			buttonChip[i].setIcon(this.image.getChipImage()[i]);
 			this.chips.add(buttonChip[i]);
 		}
-		//this.Listener(buttonChip);
 		
 		this.balance = new JLabel();
 		this.balance.setForeground(Color.white);
@@ -182,22 +162,15 @@ public class GameView extends JPanel {
 		
 		this.add(this.chips);
 	}
-//	private void Listener(JButton button[]) {
-//		for(int i = 0; i<3;i++) {
-//			button[i].addActionListener(new ActionListener() {
-//				
-//				@Override
-//				public void actionPerformed(ActionEvent e) {
-//					// TODO Auto-generated method stub
-//					setLabelBet();
-//				}
-//			});
-//		}
-//	}
-//	private void setLabelBet() {
-//		this.balance.setText("");
-//		this.bet.setText("");
-//	}
+	private void setTable() {
+		//set Card
+		for(int i = 1;i<3;i++) {
+			playerCardLabel[i].setIcon(this.image.getFront());
+			playerCardLabel[i].setVisible(true);
+			dealerCardLabel[i].setIcon(this.image.getFront());
+			dealerCardLabel[i].setVisible(true);
+		}
+	}
 	public void setImage(List<Card> playerHand,List<Card> dealerHand) {
 		int cont =0;
 		for(Card c : playerHand) {
@@ -205,8 +178,6 @@ public class GameView extends JPanel {
 			if(c.getSuit() == Suit.spades) {
 				for(Card ca: this.image.getSpades().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
-						//value = this.image.getSpades().get(ca);
 						this.playerCardLabel[cont].setIcon(this.image.getSpades().get(ca));
 						this.playerCardLabel[cont].setVisible(true);
 					}
@@ -214,7 +185,6 @@ public class GameView extends JPanel {
 			}else if(c.getSuit() == Suit.clubs) {
 				for(Card ca: this.image.getClubs().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.playerCardLabel[cont].setIcon(this.image.getClubs().get(ca));
 						this.playerCardLabel[cont].setVisible(true);
 					}
@@ -222,7 +192,6 @@ public class GameView extends JPanel {
 			}else if(c.getSuit() == Suit.diamods) {
 				for(Card ca: this.image.getDiamonds().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.playerCardLabel[cont].setIcon(this.image.getDiamonds().get(ca));
 						this.playerCardLabel[cont].setVisible(true);
 					}
@@ -230,7 +199,6 @@ public class GameView extends JPanel {
 			}else {
 				for(Card ca: this.image.getHeart().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.playerCardLabel[cont].setIcon(this.image.getHeart().get(ca));
 						this.playerCardLabel[cont].setVisible(true);
 					}
@@ -247,8 +215,6 @@ public class GameView extends JPanel {
 			if(c.getSuit() == Suit.spades) {
 				for(Card ca: this.image.getSpades().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
-						//value = this.image.getSpades().get(ca);
 						this.dealerCardLabel[carte].setIcon(this.image.getSpades().get(ca));
 						this.dealerCardLabel[carte].setVisible(true);
 					}
@@ -256,7 +222,6 @@ public class GameView extends JPanel {
 			}else if(c.getSuit() == Suit.clubs) {
 				for(Card ca: this.image.getClubs().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.dealerCardLabel[carte].setIcon(this.image.getClubs().get(ca));
 						this.dealerCardLabel[carte].setVisible(true);
 					}
@@ -264,7 +229,6 @@ public class GameView extends JPanel {
 			}else if(c.getSuit() == Suit.diamods) {
 				for(Card ca: this.image.getDiamonds().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.dealerCardLabel[carte].setIcon(this.image.getDiamonds().get(ca));
 						this.dealerCardLabel[carte].setVisible(true);
 					}
@@ -272,7 +236,6 @@ public class GameView extends JPanel {
 			}else {
 				for(Card ca: this.image.getHeart().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						//System.out.print("funzia");
 						this.dealerCardLabel[carte].setIcon(this.image.getHeart().get(ca));
 						this.dealerCardLabel[carte].setVisible(true);
 					}
@@ -284,7 +247,7 @@ public class GameView extends JPanel {
 		switch(state) {
 		case win:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
@@ -295,7 +258,7 @@ public class GameView extends JPanel {
 		case lose:
 			this.resetGame();
 			
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);
 			this.button[0].setVisible(true);
@@ -315,7 +278,7 @@ public class GameView extends JPanel {
 			break;
 		case playerTurn:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
 			this.dealerCardLabel[2].setIcon(this.image.getFront());
@@ -328,13 +291,13 @@ public class GameView extends JPanel {
 			break;
 		case dealerTurn:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);
 			break;
 		case drow:	
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			this.setImage(playerHand,dealerHand);
 			this.messageText.setText("pareggio");
@@ -344,7 +307,7 @@ public class GameView extends JPanel {
 			break;
 		case broke:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
 			this.messageText.setText("Hai Perso!");		
@@ -360,8 +323,9 @@ public class GameView extends JPanel {
 			break;
 		case nobet:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
-			this.dealerScore.setText("Dealer: ?");
+			this.setTable();
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
+			this.dealerScore.setText("Dealer: "+ String.valueOf(scoreDealer));
 			messageText.setText("non puoi puntare piu di quello che hai");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
@@ -370,18 +334,14 @@ public class GameView extends JPanel {
 			for(int i =0; i<3; i++) {
 				this.buttonChip[i].setEnabled(false);
 			}
-			for(int i = 1; i<6;i++) {
-				this.playerCardLabel[i].setIcon(image.getFront());
-				this.playerCardLabel[i].setVisible(true);
-				this.dealerCardLabel[i].setIcon(image.getFront());
-				this.dealerCardLabel[i].setVisible(true);
-			}
+			
 			break;
 		default:
 			this.resetGame();
-			this.playerScore.setText("you: "+String.valueOf(scorePlayer));
+			this.setTable();
+			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
-			messageText.setText("Fai la tua puntatata ------------>");
+			messageText.setText("Fai la tua puntatata");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
 			this.balance.setText("Saldo:"+String.valueOf(balance));
@@ -389,17 +349,12 @@ public class GameView extends JPanel {
 			for(int i =0; i<3; i++) {
 				this.buttonChip[i].setEnabled(true);
 			}
-			for(int i = 1; i<6;i++) {
-				this.playerCardLabel[i].setIcon(image.getFront());
-				this.playerCardLabel[i].setVisible(true);
-				this.dealerCardLabel[i].setIcon(image.getFront());
-				this.dealerCardLabel[i].setVisible(true);
-			}
 			break;
 			
 		}
 	}
 	private void resetGame() {
+
 		for(int i = 0; i < 6; i++) {
 			this.button[i].setVisible(false);
 		}

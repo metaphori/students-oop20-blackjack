@@ -30,10 +30,6 @@ public class ViewImpl extends JFrame implements View {
 	Game game;
 	GameView gameV;
 	ImageLoader image;
-
-	//private final JPanel main; 
-	//private final CardLayout card = new CardLayout();
-	//private final List<String> Cards;
 	
 	public ViewImpl(Game game,ImageLoader image) {
 		
@@ -70,26 +66,13 @@ public class ViewImpl extends JFrame implements View {
 		}
 		 return(height/(3)*2);
 	}
-	@Override
-	public void resetToMenu() {
-		this.getContentPane().removeAll();
-		this.setLayout(new BorderLayout());
-		this.add(new MenuView(this, game, new GameView(this, game, image), image));
-		this.setVisible(true);
-		
-	}
 
 	@Override
 	public void switchPanel(JPanel windows) {
-		// TODO Auto-generated method stub
-	
 		this.getContentPane().removeAll();
 		this.setLayout(new BorderLayout());
 		this.add(windows);
 		this.setVisible(true);
-		
-		
-		
 		
 	}
 
@@ -98,11 +81,8 @@ public class ViewImpl extends JFrame implements View {
 
 	@Override
 	public void draw(int scoreDealer, int scorePlayer, List<Card> playerHand, List<Card> dealerHand, State state, int balance, int bet) {
-		// TODO Auto-generated method stub
 		this.gameV.render(scoreDealer, scorePlayer, playerHand, dealerHand, state, balance, bet);
 	}
-
-
 
 
 
