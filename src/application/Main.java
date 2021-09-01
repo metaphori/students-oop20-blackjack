@@ -1,6 +1,7 @@
 package application;
 
 import utility.ImageLoader;
+import controller.Game;
 import controller.GameImpl;
 import view.View;
 import view.ViewImpl;
@@ -13,7 +14,7 @@ public class Main {
     	
     	ImageLoader image = new ImageLoader();
     	image.findImages();
-        final GameImpl game = new GameImpl();
+        final Game game = new GameImpl();
         final View view = new ViewImpl(game,image);
         game.setView(view);
 

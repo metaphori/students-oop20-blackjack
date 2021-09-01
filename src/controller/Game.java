@@ -2,6 +2,7 @@ package controller;
 
 import model.Chip;
 import model.State;
+import utility.ActionHandler;
 import view.View;
 
 public interface Game {
@@ -31,5 +32,7 @@ public interface Game {
 	void ResetAll();
 
 	void playAgain();
+	
+	ActionHandler getActionHandler();
 
 }

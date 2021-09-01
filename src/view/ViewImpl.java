@@ -32,7 +32,7 @@ public class ViewImpl extends JFrame implements View {
 	GameView gameV;
 	ImageLoader image;
 	
-	public ViewImpl(GameImpl game,ImageLoader image) {
+	public ViewImpl(Game game,ImageLoader image) {
 		
 		super();
 		this.image = image;

@@ -17,8 +17,8 @@ public class GameImpl implements Game {
 	
 	private int balance = 0;
 	private int bet = 0;
-	private DealerDraw dealerDraw = new DealerDraw();
-	private PlayerDraw playerDraw = new PlayerDraw();
+	private DealerDraw dealerDraw = new DealerDrawImpl();
+	private PlayerDraw playerDraw = new PlayerDrawImpl();
 	private PlayerTurn playerTurn = new PlayerTurnImpl();
 	private DealerTurn dealerTurn = new DealerTurnImpl();
 	public ActionHandler actionHandler = new ActionHandler(this,dealerDraw,playerDraw,dealerTurn,playerTurn);
@@ -167,5 +167,11 @@ public class GameImpl implements Game {
 		this.bet = 0;
 		this.setState(State.bet);
 		this.UpdateView();
+	}
+
+	@Override
+	public ActionHandler getActionHandler() {
+		// TODO Auto-generated method stub
+		return this.actionHandler;
 	}
 }

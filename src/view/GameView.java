@@ -43,7 +43,7 @@ public class GameView extends JPanel {
     private final static int NCHIPS = 3; 
     
     
-	public GameView(View view,GameImpl game,ImageLoader image) {
+	public GameView(View view,Game game,ImageLoader image) {
 		super();
 		this.game = game;
 		this.image = image;
@@ -126,7 +126,7 @@ public class GameView extends JPanel {
 			button[i].setFocusPainted(false);
 			button[i].setContentAreaFilled(false);
 			button[i].setFont(new Font("Times New Roman", Font.PLAIN, 42));
-			button[i].addActionListener(game.actionHandler);
+			button[i].addActionListener(game.getActionHandler());
 			button[i].setActionCommand(""+i);
 			button[i].setVisible(false);
 			buttonPanel.add(button[i]);
@@ -142,7 +142,7 @@ public class GameView extends JPanel {
 			buttonChip[i].setBackground(new Color(0,81,0));
 			buttonChip[i].setBorder(null);
 			buttonChip[i].setFocusPainted(false);
-			buttonChip[i].addActionListener(game.actionHandler);
+			buttonChip[i].addActionListener(game.getActionHandler());
 			buttonChip[i].setActionCommand("chips"+i);
 			buttonChip[i].setIcon(this.image.getChipImage()[i]);
 			this.chips.add(buttonChip[i]);
