@@ -25,7 +25,7 @@ public class ImageLoader {
 	private final Map<Card,ImageIcon> hearts = new HashMap<>();
 	
 	public void findImages() {
-		URL imgURL = ImageLoader.class.getResource("/backk.png");
+		URL imgURL = ImageLoader.class.getResource("/back.png");
 		this.front = loadImage(imgURL);
 		
 		imgURL = ImageLoader.class.getResource("/menuImage.png");
