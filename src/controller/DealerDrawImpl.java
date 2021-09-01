@@ -6,7 +6,11 @@ import java.util.List;
 import model.Card;
 import model.CardImpl;
 import model.Values;
-
+/**
+ * 
+ * @author 
+ *
+ */
 
 public class DealerDrawImpl implements DealerDraw {
 	

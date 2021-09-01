@@ -1,5 +1,9 @@
 package controller;
-
+/**
+ * 
+ * @author 
+ *
+ */
 public class DealerTurnImpl implements DealerTurn {
 
 	private static final int DEALER_MAX_VALUE = 17;
