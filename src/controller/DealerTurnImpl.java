@@ -13,7 +13,9 @@ public class DealerTurnImpl implements DealerTurn {
 	public DealerTurnImpl() {		
 	}
 
-
+	/*
+	 * method to check a new turn
+	 */
 	@Override
 	public void newTurnDealer(DealerDraw dealerDraw, Game game) {
 		this.dealerDraw = dealerDraw;

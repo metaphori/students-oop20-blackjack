@@ -12,6 +12,9 @@ public class PlayerTurnImpl implements PlayerTurn {
 	public PlayerTurnImpl() {
 	}
 	
+	/**
+	 *method to check a new turn
+	 */
 	@Override
 	public void newTurnPlayer(PlayerDraw playerDraw2, Game game) {
 		this.playerDraw = playerDraw2;
