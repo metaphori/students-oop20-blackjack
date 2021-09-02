@@ -5,7 +5,9 @@ import model.State;
 import utility.ActionHandler;
 import view.View;;
 
-
+/*
+ * main class that controls the entire game
+ */
 
 public class GameImpl implements Game {
 	
@@ -29,6 +31,9 @@ public class GameImpl implements Game {
 		this.view = view;
 	}
 	
+	/*
+	 * method that controls the first turn of the game
+	 */
 	@Override
 	public void newGame() {
 		this.dealerDraw.DrawCard();
@@ -47,6 +52,9 @@ public class GameImpl implements Game {
 		this.UpdateView();
 	}
 
+	/*
+	 * method to update the view
+	 */
 	@Override
 	public void UpdateView() {		
 		this.view.draw(this.dealerDraw.getPointDealer(), this.playerDraw.getPointPlayer(),
@@ -63,6 +71,9 @@ public class GameImpl implements Game {
 		this.currentState = state;
 	}
 	
+	/*
+	 * method that checks the final result
+	 */
 	@Override
 	public void CheckResult() {
 		if(this.dealerDraw.getPointDealer() > this.playerDraw.getPointPlayer() && this.dealerDraw.getPointDealer() < 22 || this.playerDraw.getPointPlayer() > 21) {
@@ -113,6 +124,9 @@ public class GameImpl implements Game {
 		}
 	}
 	
+	/*
+	 * method that checks that the bet made is valid
+	 */
 	@Override
 	public boolean checkbet(Chip chip) {	
 		boolean doit = true;
@@ -143,6 +157,9 @@ public class GameImpl implements Game {
 		return doit;
 	}
 	
+	/**
+	 * method that cleans the table
+	 */
 	@Override
 	public void ResetAll() {
 		this.playerDraw.ResetPlayer();
@@ -152,7 +169,11 @@ public class GameImpl implements Game {
 		this.UpdateView();
 		//this.newGame();
 	}
-	
+
+
+	/**
+	 *method that sets up a new game
+	 */
 	@Override
 	public void playAgain() {
 		this.playerDraw.ResetPlayer();

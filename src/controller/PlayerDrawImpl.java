@@ -19,6 +19,9 @@ public class PlayerDrawImpl implements PlayerDraw{
 		
 	}
 
+	/**
+	 *method to draw a new card
+	 */
 	@Override
 	public void DrawCard() {
 		CardImpl card = pickCard.pickedCard();
@@ -48,6 +51,9 @@ public class PlayerDrawImpl implements PlayerDraw{
 		this.playerHand.clear();
 	}
 	
+	/**
+	 *method to get point of dealer
+	 */
 	@Override
 	public int getPointPlayer() {
 		
@@ -59,6 +65,9 @@ public class PlayerDrawImpl implements PlayerDraw{
 	}
 	
 
+	/**
+	 *method to set value of ace to one
+	 */
 	@Override
 	public void setNoAce() {
 		for(int i=0;i<this.playerHand.size();i++) {

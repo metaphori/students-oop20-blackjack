@@ -24,7 +24,9 @@ public class DealerDrawImpl implements DealerDraw {
 		
 	}
 	
-
+	/*
+	 * method to draw a new card
+	 */
 	@Override
 	public void DrawCard() {
 		CardImpl card = pickCard.pickedCard();
@@ -58,6 +60,11 @@ public class DealerDrawImpl implements DealerDraw {
 		return this.dealerHand.size();
 	}
 	
+
+
+	/**
+	 *method to get point of dealer
+	 */
 	@Override
 	public int getPointDealer() {
 		this.pointdealer = 0;
@@ -67,7 +74,9 @@ public class DealerDrawImpl implements DealerDraw {
 		return this.pointdealer;
 	}
 	
-
+	/**
+	 *method to set value of ace to one  
+	 */
 	@Override
 	public void setNoAce() {	
 		for(int i=0;i<this.dealerHand.size();i++) {

@@ -16,6 +16,10 @@ public class PickCard {
 		
 	}
 	
+	/**
+	 * method that draws a new card
+	 * @return new card
+	 */
 	public CardImpl pickedCard() {
 		
 		int pickedCardNum = random.nextInt(NUMBER_SUIT)+1;
