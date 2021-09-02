@@ -10,30 +10,28 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.Game;
 import utility.ImageLoader;
 /**
+ * the class for JPanel of menu
  * 
- * @author bon98
  *
  */
 public class MenuView extends JPanel{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-	private JButton start,exit;
-	private JLabel title,label;
+	//JButton for menu
+	private JButton start,exit,credits;
+	//label for Title and image of menu
+	private JLabel title,iconImage;
 	private final View view;
 	private GameView gameV;
 	private ImageLoader image;
 	/**
-	 * 
+	 * The view for menu
 	 * @param view
 	 * @param game
 	 * @param gameV
@@ -46,7 +44,6 @@ public class MenuView extends JPanel{
 		this.image = images;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setSize(new Dimension(SCREEN_WIDTH,SCREEN_HEIGHT));
 		this.setOpaque(false);
 		
 		this.title = new JLabel("BlackJack");
@@ -54,22 +51,14 @@ public class MenuView extends JPanel{
 		this.title.setForeground(Color.YELLOW);
 		this.title.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(title);
-	    this.label = new JLabel();
-	    this.label.setIcon(this.image.getMenuImage());
-	    this.label.setAlignmentX(Component.CENTER_ALIGNMENT);
-	    this.add(label);
+	    this.iconImage = new JLabel();
+	    this.iconImage.setIcon(this.image.getMenuImage());
+	    this.iconImage.setAlignmentX(Component.CENTER_ALIGNMENT);
+	    this.add(iconImage);
 	    
-		this.start = new JButton("START");
-		this.start.setBounds(500,750,200,50);
-		this.start.setBackground(null);
-		this.start.setFocusPainted(false);
-		this.start.setForeground(Color.white);
-		this.start.setFont(new Font("Book Antiqua", Font.PLAIN,36));
-		this.start.setVisible(true);
-		this.start.setActionCommand("start");
-		this.start.setContentAreaFilled(false);
-		this.start.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.add(this.start);
+	    //button for start the game
+	    this.start = new JButton("START");
+		this.add(this.setButton(this.start));
 		this.start.addActionListener(new ActionListener() {
 			
 			@Override
@@ -78,20 +67,20 @@ public class MenuView extends JPanel{
 				
 			}
 		});
+		//button for the credits
+		this.credits = new JButton("CREDITS");
+		this.add(this.setButton(this.credits));
+		this.credits.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Il progetto è stato realizzato dagli studenti:\n-Alberto Rossi Mat 0000849580\n-Enrico Baroni Mat 0000839986\nper il corso di programmazione ad oggeti");
+			}
+		});
 		
-		
+		//button for Exit
 		this.exit = new JButton("EXIT");
-		this.exit.setBounds(500,750,200,50);
-		this.exit.setBackground(null);
-		this.exit.setFocusPainted(false);
-		this.exit.setForeground(Color.white);
-		this.exit.setFont(new Font("Book Antiqua", Font.PLAIN,36));
-		this.exit.setVisible(true);
-		this.exit.setActionCommand("exit");
-		this.exit.setContentAreaFilled(false);
-		this.exit.setAlignmentX(Component.CENTER_ALIGNMENT);
-		this.add(this.exit);
-		
+		this.add(this.setButton(this.exit));
 		this.exit.addActionListener(new ActionListener() {
 			
 			@Override
@@ -102,7 +91,20 @@ public class MenuView extends JPanel{
 		});
 		
 	}
-	void newPlay() {
+	//method to set each button
+	private JButton setButton(JButton button) {
+		button.setBackground(null);
+		button.setFocusPainted(false);
+		button.setForeground(Color.white);
+		button.setFont(new Font("Book Antiqua", Font.PLAIN,36));
+		button.setVisible(true);
+		button.setActionCommand("exit");
+		button.setContentAreaFilled(false);
+		button.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		return button;
+	}
+	private void newPlay() {
 		this.view.switchPanel(gameV);
 	}
 }
