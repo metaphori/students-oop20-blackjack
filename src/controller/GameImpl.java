@@ -117,7 +117,7 @@ public class GameImpl implements Game {
 	
 	@Override
 	public boolean checkBalance() {
-		if(this.balance < 20) {
+		if(this.balance < 0) {
 			return true;
 		}else {
 			return false;
@@ -148,6 +148,13 @@ public class GameImpl implements Game {
 			return doit;
 		case hundred:
 			if(this.balance - this.bet - Chip.getChipValue(Chip.hundred) < 0) {
+				this.setState(State.nobet);
+				this.UpdateView();
+				doit = false;
+			}
+			return doit;
+		case five:
+			if(this.balance - this.bet - Chip.getChipValue(Chip.five) < 0) {
 				this.setState(State.nobet);
 				this.UpdateView();
 				doit = false;
