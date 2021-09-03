@@ -61,6 +61,7 @@ public class MenuView extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				newPlay();
 				
 			}

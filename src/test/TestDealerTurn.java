@@ -30,8 +30,6 @@ public class TestDealerTurn {
 		dealerDraw.ResetDealer();
 		assertEquals(dealerDraw.getDealerHand().size(),0);
 		
-		this.game.newGame();
-		assertEquals(dealerDraw.getDealerHand().size(), 2);
 		
 	}
 

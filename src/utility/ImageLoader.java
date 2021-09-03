@@ -18,13 +18,13 @@ public class ImageLoader {
 	
 	private static final ImageLoader IMAGE = new ImageLoader();
 	private static final int NCard = 15;
-	private static final int NCHIPS = 3;
+	private static final int NCHIPS = 4;
 	/*The front image*/
 	private ImageIcon front = new ImageIcon();
 	/*The menu image*/
 	private ImageIcon menu = new ImageIcon();
 	/*The chips images*/
-	private ImageIcon chip[] = new ImageIcon[3];
+	private ImageIcon chip[] = new ImageIcon[NCHIPS];
 	/*The Spades images*/
 	private final Map<CardImpl,ImageIcon> spades = new HashMap<>();
 	/*The diamonds images*/

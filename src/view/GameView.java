@@ -48,7 +48,7 @@ public class GameView extends JPanel {
 	private JLabel balance, bet;
     private final static int NCARD = 6;
     private final static int NBUTTONS = 6;
-    private final static int NCHIPS = 3; 
+    private final static int NCHIPS = 4; 
     
     /**
      * View of the game

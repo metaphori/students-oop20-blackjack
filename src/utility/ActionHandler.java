@@ -82,6 +82,10 @@ public class ActionHandler implements ActionListener{
 				this.game.setBet(Chip.hundred);
 			}
 			break;
+		case "chips3"://bet5
+			if(this.game.checkbet(Chip.five)) {
+				this.game.setBet(Chip.five);
+			}
 		}
 	}
 

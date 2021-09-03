@@ -5,6 +5,7 @@ package model;
  *
  */
 public enum Chip {
+	five(5),
 	twenty(20),
 	fifty(50),
 	hundred(100);
@@ -24,6 +25,8 @@ public enum Chip {
 	 */
 	public static int getChipValue(Chip chip) {
 		switch (chip) {
+		case five:
+			return 5;
 		case twenty:
 			return 20;
 		case fifty:
