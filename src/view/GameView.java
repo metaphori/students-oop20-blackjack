@@ -180,9 +180,9 @@ public class GameView extends JPanel {
 	 */
 	private void setTable() {
 		for(int i = 1;i<3;i++) {
-			playerCardLabel[i].setIcon(this.image.getFront());
+			playerCardLabel[i].setIcon(this.image.getBackCard());
 			playerCardLabel[i].setVisible(true);
-			dealerCardLabel[i].setIcon(this.image.getFront());
+			dealerCardLabel[i].setIcon(this.image.getBackCard());
 			dealerCardLabel[i].setVisible(true);
 		}
 	}
@@ -313,7 +313,7 @@ public class GameView extends JPanel {
 			this.playerScore.setText("Giocatore: "+String.valueOf(scorePlayer));
 			this.dealerScore.setText("Dealer: ?");
 			this.setImage(playerHand,dealerHand);
-			this.dealerCardLabel[2].setIcon(this.image.getFront());
+			this.dealerCardLabel[2].setIcon(this.image.getBackCard());
 			this.messageText.setText("Vuoi pescare?");
 			this.button[1].setVisible(true);
 			this.button[1].setText("Pesca");

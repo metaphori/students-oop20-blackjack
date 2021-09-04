@@ -11,7 +11,6 @@ import model.Suit;
 import model.Values;
 /**
  * this method reload the image
- * @author bon98
  *
  */
 public class ImageLoader {
@@ -20,7 +19,7 @@ public class ImageLoader {
 	private static final int NCard = 15;
 	private static final int NCHIPS = 4;
 	/*The front image*/
-	private ImageIcon front = new ImageIcon();
+	private ImageIcon backCard = new ImageIcon();
 	/*The menu image*/
 	private ImageIcon menu = new ImageIcon();
 	/*The chips images*/
@@ -38,7 +37,7 @@ public class ImageLoader {
 	 */
 	public void findImages() {
 		URL imgURL = ImageLoader.class.getResource("/back.png");
-		this.front = loadImage(imgURL);
+		this.backCard = loadImage(imgURL);
 		
 		imgURL = ImageLoader.class.getResource("/menuImage.png");
 		this.menu = loadImage(imgURL);
@@ -119,8 +118,8 @@ public class ImageLoader {
 	 * 
 	 * @return ImageIcon of back Card
 	 */
-	public ImageIcon getFront() {
-		return this.front;
+	public ImageIcon getBackCard() {
+		return this.backCard;
 	}
 	/**
 	 * 

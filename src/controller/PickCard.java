@@ -26,7 +26,7 @@ public class PickCard {
 		int pickedCardValue = random.nextInt(NUMBER_VALUE)+1;	
 //		spade 0
 //		club 1 
-//		diamons 2 
+//		diamonds 2 
 //		heart 3
 		switch (pickedCardNum) {
 		case 1://spade
@@ -35,7 +35,7 @@ public class PickCard {
 		case 2://club
 			this.cardpicked = new CardImpl(Suit.clubs, Values.getValue(pickedCardValue));
 			break;
-		case 3://diamons
+		case 3://diamonds
 			this.cardpicked = new CardImpl(Suit.diamods, Values.getValue(pickedCardValue));
 			break;
 		case 4://heart
