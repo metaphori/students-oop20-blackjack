@@ -120,7 +120,7 @@ public class GameView extends JPanel {
 		messageText.setForeground(Color.white);
 		messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
 		messageText.setEditable(false);
-		messageText.setText("Fai la tua puntatata");
+		messageText.setText("Fai la tua puntata");
 		messageText.setOpaque(false);
 		this.add(messageText);
 		
@@ -230,40 +230,41 @@ public class GameView extends JPanel {
 			
 			
 			
-		int carte = 0;
+		int num = 0;
 		for(Card c : dealerHand) {
-			carte++;
+			num++;
 			if(c.getSuit() == Suit.spades) {
 				for(Card ca: this.image.getSpades().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						this.dealerCardLabel[carte].setIcon(this.image.getSpades().get(ca));
-						this.dealerCardLabel[carte].setVisible(true);
+						this.dealerCardLabel[num].setIcon(this.image.getSpades().get(ca));
+						this.dealerCardLabel[num].setVisible(true);
 					}
 				}
 			}else if(c.getSuit() == Suit.clubs) {
 				for(Card ca: this.image.getClubs().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						this.dealerCardLabel[carte].setIcon(this.image.getClubs().get(ca));
-						this.dealerCardLabel[carte].setVisible(true);
+						this.dealerCardLabel[num].setIcon(this.image.getClubs().get(ca));
+						this.dealerCardLabel[num].setVisible(true);
 					}
 				}
 			}else if(c.getSuit() == Suit.diamods) {
 				for(Card ca: this.image.getDiamonds().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						this.dealerCardLabel[carte].setIcon(this.image.getDiamonds().get(ca));
-						this.dealerCardLabel[carte].setVisible(true);
+						this.dealerCardLabel[num].setIcon(this.image.getDiamonds().get(ca));
+						this.dealerCardLabel[num].setVisible(true);
 					}
 				}
 			}else {
 				for(Card ca: this.image.getHeart().keySet()) {
 					if(ca.getValues() == c.getValues()) {
-						this.dealerCardLabel[carte].setIcon(this.image.getHeart().get(ca));
-						this.dealerCardLabel[carte].setVisible(true);
+						this.dealerCardLabel[num].setIcon(this.image.getHeart().get(ca));
+						this.dealerCardLabel[num].setVisible(true);
 					}
 				}
 			}
 		}
 	}
+	
 /**
  * Set Table for each game Status
  * @param scoreDealer
