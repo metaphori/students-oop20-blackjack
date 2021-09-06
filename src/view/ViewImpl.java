@@ -24,11 +24,10 @@ public class ViewImpl extends JFrame implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	public static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
-	Game game;
-	GameView gameV;
-	ImageLoader image;
+	private  static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
+	private static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+	private Game game;
+	private GameView gameV;
 	/**
 	 * 
 	 * @param game
@@ -37,7 +36,6 @@ public class ViewImpl extends JFrame implements View {
 	public ViewImpl(Game game,ImageLoader image) {
 		
 		super();
-		this.image = image;
 		this.gameV = new GameView(this, game,image);
 		this.game = game;
 		this.setPreferredSize(new Dimension(this.chooseWidthDimension(),this.chooseHeightDimension()));
@@ -54,8 +52,7 @@ public class ViewImpl extends JFrame implements View {
 
 
 /**
- * 
- * @return
+ * this method chooses the width based on the screen resolution
  */
 	private int chooseWidthDimension() {
 		int width = SCREEN_WIDTH;
@@ -65,8 +62,7 @@ public class ViewImpl extends JFrame implements View {
 		 return(width/(3)*2);
 	}
 	/**
-	 * 
-	 * @return
+	 * this method chooses the height based on the screen resolution
 	 */
 	private int chooseHeightDimension() {
 		int height = SCREEN_HEIGHT;
