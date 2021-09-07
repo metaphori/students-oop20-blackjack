@@ -117,7 +117,7 @@ public class GameImpl implements Game {
 	
 	@Override
 	public boolean checkBalance() {
-		if(this.balance < 0) {
+		if(this.balance <= 0) {
 			return true;
 		}else {
 			return false;
