@@ -26,7 +26,7 @@ public class GameView extends JPanel {
 	
 	private static final long serialVersionUID = 1L;
 	//JPanel for the table game
-    private JPanel table,dealerPanel,playerPanel;
+    private JPanel table,dealerPanel,playerPanel,chips;
     //JLabel for player and dealer
     private JLabel playerCardLabel[] = new JLabel[6];
     private JLabel dealerCardLabel[] = new JLabel[6];
@@ -44,7 +44,6 @@ public class GameView extends JPanel {
 	private static final int CARDWIDTH= 150;
 	private static final int CARDHEIGHT= 213;
 	private Game game;
-	private JPanel chips;
 	private JLabel balance, bet;
     private final static int NCARD = 6;
     private final static int NBUTTONS = 6;
@@ -62,26 +61,26 @@ public class GameView extends JPanel {
 		this.image = image;
 		this.setOpaque(false);
 		this.setLayout(null);
-		table = new JPanel();
-		table.setBackground(Color.DARK_GRAY);
-		table.setBounds(25,25,800,525);
-		table.setLayout(null);
-		table.setVisible(true);
+		this.table = new JPanel();
+		this.table.setBackground(Color.DARK_GRAY);
+		this.table.setBounds(25,25,800,525);
+		this.table.setLayout(null);
+		this.table.setVisible(true);
 		
 		
-		dealerPanel = new JPanel();
-		dealerPanel.setBounds(55,70,CARDWIDTH*5,CARDHEIGHT);
-		dealerPanel.setBackground(null);
-		dealerPanel.setOpaque(false);
-		dealerPanel.setLayout(new GridLayout(1,5));
-		dealerPanel.setVisible(true);
+		this.dealerPanel = new JPanel();
+		this.dealerPanel.setBounds(55,70,CARDWIDTH*5,CARDHEIGHT);
+		this.dealerPanel.setBackground(null);
+		this.dealerPanel.setOpaque(false);
+		this.dealerPanel.setLayout(new GridLayout(1,5));
+		this.dealerPanel.setVisible(true);
 		this.add(dealerPanel);
 				
-		playerPanel = new JPanel();
-		playerPanel.setBounds(55,300,CARDWIDTH*5,CARDHEIGHT);
-		playerPanel.setOpaque(false);
-		playerPanel.setLayout(new GridLayout(1,5));
-		playerPanel.setVisible(true);
+		this.playerPanel = new JPanel();
+		this.playerPanel.setBounds(55,300,CARDWIDTH*5,CARDHEIGHT);
+		this.playerPanel.setOpaque(false);
+		this.playerPanel.setLayout(new GridLayout(1,5));
+		this.playerPanel.setVisible(true);
 		this.add(playerPanel);
 
 		for(int i = 1; i < NCARD; i++) {
@@ -91,44 +90,44 @@ public class GameView extends JPanel {
 		}
 		
 		for(int i = 1; i < NCARD; i++) {
-			dealerCardLabel[i] = new JLabel();
-			dealerCardLabel[i].setVisible(true);
-			dealerPanel.add(dealerCardLabel[i]);
+			this.dealerCardLabel[i] = new JLabel();
+			this.dealerCardLabel[i].setVisible(true);
+			this.dealerPanel.add(dealerCardLabel[i]);
 		}	
 		this.setTable();
 		
-		dealerScore = new JLabel();
-		dealerScore.setBounds(50,5,200,30);
-		dealerScore.setForeground(Color.white);
-		dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		dealerScore.setText("Dealer : 0");
+		this.dealerScore = new JLabel();
+		this.dealerScore.setBounds(50,5,200,30);
+		this.dealerScore.setForeground(Color.white);
+		this.dealerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		this.dealerScore.setText("Dealer : 0");
 		
-		table.add(dealerScore);
+		this.table.add(dealerScore);
 		
-		playerScore = new JLabel();
-		playerScore.setBounds(50,490,200,30);
-		playerScore.setForeground(Color.white);
-		playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
-		playerScore.setText("Giocatore : 0");
-		table.add(playerScore);
+		this.playerScore = new JLabel();
+		this.playerScore.setBounds(50,490,200,30);
+		this.playerScore.setForeground(Color.white);
+		this.playerScore.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		this.playerScore.setText("Giocatore : 0");
+		this.table.add(playerScore);
 	
 		this.add(table,BorderLayout.CENTER);
 		
-		messageText = new JTextArea();
-		messageText.setBounds(100,560,670,80);
-		messageText.setBackground(null);
-		messageText.setForeground(Color.white);
-		messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
-		messageText.setEditable(false);
-		messageText.setText("Fai la tua puntata");
-		messageText.setOpaque(false);
+		this.messageText = new JTextArea();
+		this.messageText.setBounds(100,560,670,80);
+		this.messageText.setBackground(null);
+		this.messageText.setForeground(Color.white);
+		this.messageText.setFont(new Font("Times New Roman", Font.PLAIN, 42));
+		this.messageText.setEditable(false);
+		this.messageText.setText("Fai la tua puntata");
+		this.messageText.setOpaque(false);
 		this.add(messageText);
 		
-		buttonPanel = new JPanel();
-		buttonPanel.setBounds(920,150,200,300);
-		buttonPanel.setBackground(null);
-		buttonPanel.setLayout(new GridLayout(6,1));
-		buttonPanel.setOpaque(false);
+		this.buttonPanel = new JPanel();
+		this.buttonPanel.setBounds(920,150,200,300);
+		this.buttonPanel.setBackground(null);
+		this.buttonPanel.setLayout(new GridLayout(6,1));
+		this.buttonPanel.setOpaque(false);
 		this.add(buttonPanel);
 		
 		for(int i = 0; i < NBUTTONS; i++) {
@@ -368,7 +367,7 @@ public class GameView extends JPanel {
 			this.resetGame();
 			this.setTable();
 			this.setScore(scorePlayer, scoreDealer);
-			this.messageText.setText("Fai la tua puntatata");
+			this.messageText.setText("Fai la tua puntata");
 			this.button[3].setVisible(true);
 			this.button[3].setText("Gioca");
 			this.setBalance(balance);
