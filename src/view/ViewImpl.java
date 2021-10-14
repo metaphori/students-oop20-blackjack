@@ -3,6 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GraphicsDevice;
 import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -24,8 +26,10 @@ public class ViewImpl extends JFrame implements View {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private  static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width;
-	private static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height;
+	private  static final int SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().width/(3)*2;
+	private static final int SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().height/(3)*2;
+	private GraphicsDevice gd = this.getGraphicsConfiguration().getDevice();
+	
 	private Game game;
 	private GameView gameV;
 	/**
@@ -38,12 +42,13 @@ public class ViewImpl extends JFrame implements View {
 		super();
 		this.gameV = new GameView(this, game,image);
 		this.game = game;
-		this.setPreferredSize(new Dimension(this.chooseWidthDimension(),this.chooseHeightDimension()));
+		this.setPreferredSize(new Dimension(gd.getDefaultConfiguration().getBounds().getSize()));
+		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setTitle("BLACKJACK");
 		this.setIconImage(new ImageIcon(getClass().getClassLoader().getResource("icon.jpg")).getImage());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLayout(null);
-		this.setResizable(false);
+		//this.setLayout(null);
+		//this.setResizable(false);
 		this.getContentPane().setBackground(new Color(0,81,0));                   
 		this.switchPanel(new MenuView(this,this.game,this.gameV,image));
 		this.pack();
@@ -76,7 +81,8 @@ public class ViewImpl extends JFrame implements View {
 	public void switchPanel(JPanel windows) {
 		this.getContentPane().removeAll();
 		this.setLayout(new BorderLayout());
-		this.add(windows);
+		this.add(windows,BorderLayout.CENTER);
+		this.pack();
 		this.setVisible(true);
 		
 	}

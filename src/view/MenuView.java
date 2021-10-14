@@ -42,6 +42,8 @@ public class MenuView extends JPanel{
 		this.image = images;
 		this.view = view;
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		
 		this.setOpaque(false);
 		
 		this.title = new JLabel("BlackJack");
