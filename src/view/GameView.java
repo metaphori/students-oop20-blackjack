@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.List;
@@ -48,7 +49,6 @@ public class GameView extends JPanel {
     private final static int NCARD = 6;
     private final static int NBUTTONS = 6;
     private final static int NCHIPS = 4; 
-    
     /**
      * View of the game
      * @param view
